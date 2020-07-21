@@ -18,11 +18,11 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [{
-                    loader: 'less-loader',
+                    loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: 'images/',
-                        publicPath: 'images/'
+                        outputPath: 'assets/',
+                        publicPath: 'assets/'
                     }
                 }]
             }
