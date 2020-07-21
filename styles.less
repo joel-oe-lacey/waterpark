@@ -88,7 +88,29 @@ var {
     vertical-align: baseline;
 }
 
-.map {
-    height: 500px;
+html,
+body {
+    height: 100%;
+}
+
+#map {
+    height: 80%;
+    width: 100%;
     background-color: blue;
+    position: relative;
+}
+
+.tiles-container {
+    height: 120%;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: honeydew;
+}
+
+.tiles {
+    height: 100%;
+    width: 60%;
 }
