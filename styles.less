@@ -91,6 +91,7 @@ var {
 html,
 body {
     height: 100%;
+    width: 100%;
 }
 
 #map {
@@ -104,13 +105,38 @@ body {
     height: 120%;
     width: 100%;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-color: honeydew;
 }
 
 .tiles {
     height: 100%;
-    width: 60%;
+    width: 65%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tile {
+    height: 25%;
+    width: 24.8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tile-picture {
+    height: 60%;
+    width: 100%;
+    border-bottom: 2px solid black;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
 }
