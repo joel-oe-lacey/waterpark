@@ -1,4 +1,5 @@
 import './styles.less';
+import waterslide from './assets/02_640x426_1.jpg';
 import mapImage from './assets/01_1920x1080_Map.jpg';
 import foodIcon from './assets/foodIcon.png';
 import $ from 'jquery';
