@@ -1,3 +1,15 @@
+// Variables
+@toddlersColor: #b377d9;
+@everyoneColor: #7277d5;
+@familyColor: #4a8bdb;
+@extremeColor: #3bbeb0;
+@wcColor: #b0c151;
+@lockerColor: #f5ba42;
+@foodColor: #f59b43;
+@parkingColor: #e7663f;
+@firstaidColor: #d9434e;
+
+// Reset
 a,
 abbr,
 acronym,
@@ -104,31 +116,30 @@ body {
 }
 
 .tiles-container {
-    height: 60%;
+    height: 250%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: honeydew;
 }
 
 .tiles {
     height: 100%;
-    width: 65%;
+    width: 70%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
     align-items: center;
 }
 
 .tile {
-    height: 25%;
-    width: 24.8%;
+    height: 275px;
+    width: 240px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin: 5px;
 }
 
 .tile-picture {
@@ -145,7 +156,7 @@ body {
 
 // Tabs
 .tabs {
-    height: 20%;
+    height: 18%;
     width: 100%;
     position: absolute;
     // background-color: red;
@@ -185,42 +196,41 @@ body {
         font-size: .9rem;
         color: white;
         text-align: center;
-
     }
 }
 
 .toddlers {
-    background-color: #b377d9;
+    background-color: @toddlersColor;
 }
 
 .everyone {
-    background-color: #7277d5;
+    background-color: @everyoneColor;
 }
 
 .family {
-    background-color: #4a8bdb;
+    background-color: @familyColor;
 }
 
 .extreme {
-    background-color: #3bbeb0;
+    background-color: @extremeColor;
 }
 
 .wc {
-    background-color: #b0c151;
+    background-color: @wcColor;
 }
 
 .lockers {
-    background-color: #f5ba42;
+    background-color: @lockerColor;
 }
 
 .food {
-    background-color: #f59b43;
+    background-color: @foodColor;
 }
 
 .parking {
-    background-color: #e7663f;
+    background-color: @parkingColor;
 }
 
 .firstaid {
-    background-color: #d9434e;
+    background-color: @firstaidColor;
 }
