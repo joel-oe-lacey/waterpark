@@ -88,21 +88,23 @@ var {
     vertical-align: baseline;
 }
 
-html,
+html {
+    height: 100%;
+    width: 100%;
+}
+
 body {
     height: 100%;
     width: 100%;
 }
 
 #map {
-    height: 80%;
+    height: 100%;
     width: 100%;
-    background-color: blue;
-    position: relative;
 }
 
 .tiles-container {
-    height: 120%;
+    height: 60%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -139,4 +141,86 @@ body {
         width: 100%;
         object-fit: cover;
     }
+}
+
+// Tabs
+.tabs {
+    height: 20%;
+    width: 100%;
+    position: absolute;
+    // background-color: red;
+    z-index: 9999;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tabs-cont {
+    height: 100%;
+    width: 80%;
+    // background-color: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tab {
+    height: 100%;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        height: 75%;
+        width: 100%;
+        font-size: 2rem;
+        color: white;
+        text-align: center;
+    }
+
+    h3 {
+        height: 25%;
+        width: 100%;
+        font-size: .9rem;
+        color: white;
+        text-align: center;
+
+    }
+}
+
+.toddlers {
+    background-color: #b377d9;
+}
+
+.everyone {
+    background-color: #7277d5;
+}
+
+.family {
+    background-color: #4a8bdb;
+}
+
+.extreme {
+    background-color: #3bbeb0;
+}
+
+.wc {
+    background-color: #b0c151;
+}
+
+.lockers {
+    background-color: #f5ba42;
+}
+
+.food {
+    background-color: #f59b43;
+}
+
+.parking {
+    background-color: #e7663f;
+}
+
+.firstaid {
+    background-color: #d9434e;
 }
