@@ -1,9 +1,22 @@
 import './styles.less';
-import waterslide from './assets/02_640x426_1.jpg';
 import mapImage from './assets/01_1920x1080_Map.jpg';
-import foodIcon from './assets/foodIcon.png';
-import $ from 'jquery';
 
+import waterslide from './assets/02_640x426_1.jpg';
+import kidsArea from './assets/03_640x426_2.jpg';
+import restaurant from './assets/04_640x426_3.jpg';
+import firstAid from './assets/05_640x426_4.jpg';
+
+import aidIcon from './assets/aidIcon.png';
+import extremeIcon from './assets/extremeIcon.png';
+import familySlideIcon from './assets/familySlideIcon.png';
+import forEveryoneIcon from './assets/forEveryoneIcon.png';
+import foodIcon from './assets/foodIcon.png';
+import lockersIcon from './assets/lockersIcon.png';
+import parkingIcon from './assets/parkingIcon.png';
+import toddlersIcon from './assets/toddlersIcon.png';
+import wcIcon from './assets/wcIcon.png';
+
+import $ from 'jquery';
 import {
     map
 } from 'leaflet';
@@ -17,8 +30,6 @@ const height = $(window).height();
 //is center making a difference compared to set bounds?
 const mapid = L.map('map', {
     crs: L.CRS.Simple,
-    // minZoom: 1,
-    // maxZoom: 4,
     center: [height/2, width/2],
     zoom: 0,
     zoomControl: false,
@@ -33,33 +44,8 @@ const mapid = L.map('map', {
 const widthRatio = 1920/width;
 const heightRatio = 1080/height;
  
-const testBounds = L.latLngBounds([0, 0], [height, width])
-
-// console.log('testBound', testBounds)
-// console.log('northw', testBounds.getSouthWest())
-// console.log('southe', testBounds.getNorthEast())
-// console.log('bounds', testBounds)
-
-//used to normalize coordinate and scale for zoom 
-// var southWest = mapid.unproject([0, height], mapid.getMaxZoom() );
-// var northEast = mapid.unproject([width, 0], mapid.getMaxZoom() );
-// var bounds = new L.LatLngBounds(southWest, northEast);
-// // var bounds = new L.LatLngBounds([0,height], [width, 0]);
-// console.log('bounds', bounds)
-console.log('img', L.imageOverlay(mapImage, testBounds).addTo(mapid).getBounds());
-
-// mapid.fitBounds(testBounds);
-// mapid.setMaxBounds(bounds);
-
-var popup = L.popup();
-
-// function onMapClick(e) {
-//     console.log('latlong', e.latlng)
-//     popup
-//         .setLatLng(e.latlng)
-//         .setContent("You clicked the map at " + e.latlng.toString())
-//         .openOn(mapid);
-// }
+const testBounds = L.latLngBounds([0, 0], [height, width]);
+L.imageOverlay(mapImage, testBounds).addTo(mapid).getBounds();
 
 function onMapClick(e) {
     var mapWidth = mapid._container.offsetWidth;
@@ -88,8 +74,10 @@ var testIcon = L.icon({
 //marker positions to top left, but we want marker over point, so need to adjust for dimensions 
 const latMarkerNorm = 55;
 const lngMarkerNorm = -22;
+
 const latLngPlot = L.latLng((129 + height + latMarkerNorm), (115 + lngMarkerNorm))
 console.log('marker', L.marker(latLngPlot, {
     icon: testIcon,
     // pane: 'overlayPane'
 }).addTo(mapid).getLatLng());
+
