@@ -6,16 +6,6 @@ import kidsArea from './assets/03_640x426_2.jpg';
 import restaurant from './assets/04_640x426_3.jpg';
 import firstAid from './assets/05_640x426_4.jpg';
 
-import aidIcon from './assets/aidIcon.png';
-import extremeIcon from './assets/extremeIcon.png';
-import familySlideIcon from './assets/familySlideIcon.png';
-import forEveryoneIcon from './assets/forEveryoneIcon.png';
-import foodIcon from './assets/foodIcon.png';
-import lockersIcon from './assets/lockersIcon.png';
-import parkingIcon from './assets/parkingIcon.png';
-import toddlersIcon from './assets/toddlersIcon.png';
-import wcIcon from './assets/wcIcon.png';
-
 import $ from 'jquery';
 import {
     map
@@ -52,32 +42,101 @@ function onMapClick(e) {
     var mapHeight = mapid._container.offsetHeight;
     console.log('w', e.containerPoint.x * width / mapWidth);
     console.log('h', e.containerPoint.y * height / mapHeight);
+    console.log(e.latlng);
     console.log(e);
 }
 
 mapid.on('click', onMapClick);
 
-var testIcon = L.icon({
-    iconUrl: foodIcon,
-    // iconSize: [38, 95],
-    // iconAnchor: [22, 94],
-    // popupAnchor: [-3, -76],
-    // shadowUrl: 'my-icon-shadow.png',
-    // shadowSize: [68, 95],
-    // shadowAnchor: [22, 94]
+const latLngCalc = (lat, lng) => {
+    // marker is getting offset by the page height, need to work on that bug
+    // lat long coords of 0, 0 are 0, pageHeight on container, so this currently accounts for that in coords. 
+    // read docs for more details 
+    //marker positions to top left, but we want marker over point, so need to adjust for dimensions 
+    const latMarkerNorm = 55;
+    const lngMarkerNorm = -22;
+
+    // return L.latLng((lat + height + latMarkerNorm), (lng + lngMarkerNorm))
+    return L.latLng((lat + height ), (lng ))
+}
+
+//split to separate files 
+//icons
+import aidIconImg from './assets/aidIcon.png';
+import extremeIconImg from './assets/extremeIcon.png';
+import familySlideIconImg from './assets/familySlideIcon.png';
+import forEveryoneIconImg from './assets/forEveryoneIcon.png';
+import foodIconImg from './assets/foodIcon.png';
+import lockersIconImg from './assets/lockersIcon.png';
+import parkingIconImg from './assets/parkingIcon.png';
+import toddlersIconImg from './assets/toddlersIcon.png';
+import wcIconImg from './assets/wcIcon.png';
+
+const testIcon = L.icon({
+    iconUrl: foodIconImg,
+    iconSize: [60, 52],
+    iconAnchor: [22, 55],
 });
+const aidIcon = L.icon({
+    iconUrl: aidIconImg,
+    iconSize: [60, 52],
+    iconAnchor: [22, 55],
+});
+const extremeIcon = L.icon({
+    iconUrl: extremeIconImg,
+    iconSize: [60, 52],
+    iconAnchor: [22, 55],
+})
+const familySlideIcon = L.icon({
+    iconUrl: familySlideIconImg,
+    iconSize: [60, 52],
+    iconAnchor: [22, 55],
+})
+const forEveryoneIcon = L.icon({
+    iconUrl: forEveryoneIconImg,
+    iconSize: [60, 52],
+    iconAnchor: [22, 55],
+})
+const foodIcon = L.icon({
+    iconUrl: foodIconImg,
+    iconSize: [60, 52],
+    iconAnchor: [22, 55],
+})
+const lockersIcon = L.icon({
+    iconUrl: lockersIconImg,
+    iconSize: [60, 52],
+    iconAnchor: [22, 55],
+})
+const parkingIcon = L.icon({
+    iconUrl: parkingIconImg,
+    iconSize: [60, 52],
+    iconAnchor: [22, 55],
+})
+const toddlersIcon = L.icon({
+    iconUrl: toddlersIconImg,
+    iconSize: [40, 40],
+    iconAnchor: [0, 0],
+})
+const wcIcon = L.icon({
+    iconUrl: wcIconImg,
+    iconSize: [60, 52],
+    iconAnchor: [22, 55],
+})
 
-// marker is getting offset by the page height, need to work on that bug
-// lat long coords of 0, 0 are 0, pageHeight on container, so this currently accounts for that in coords. 
-// read docs for more details 
-
-//marker positions to top left, but we want marker over point, so need to adjust for dimensions 
-const latMarkerNorm = 55;
-const lngMarkerNorm = -22;
-
-const latLngPlot = L.latLng((129 + height + latMarkerNorm), (115 + lngMarkerNorm))
-console.log('marker', L.marker(latLngPlot, {
+//markers
+L.marker(latLngCalc(130, 115), {
     icon: testIcon,
     // pane: 'overlayPane'
-}).addTo(mapid).getLatLng());
+}).addTo(mapid);
 
+L.marker(latLngCalc(500, 285), {
+    icon: toddlersIcon,
+}).addTo(mapid);
+
+L.marker(latLngCalc(315, 1315), {
+    icon: extremeIcon,
+}).addTo(mapid);
+
+L.marker(latLngCalc(571, 241), {
+    icon: forEveryoneIcon,
+}).addTo(mapid);
