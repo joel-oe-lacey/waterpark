@@ -7,6 +7,7 @@ import lockersIconImg from './assets/lockersIcon.png';
 import parkingIconImg from './assets/parkingIcon.png';
 import toddlersIconImg from './assets/toddlersIcon.png';
 import wcIconImg from './assets/wcIcon.png';
+
 export const aidIcon = L.icon({
     iconUrl: aidIconImg,
     iconSize: [60, 52],

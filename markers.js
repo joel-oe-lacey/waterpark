@@ -1,5 +1,4 @@
 import {
-    testIcon,
     aidIcon,
     extremeIcon,
     familySlideIcon,
@@ -34,6 +33,11 @@ export const pirateShip = L.marker(latLngCalc(500, 285), {
 })
 
 export const toddlerSlide = L.marker(latLngCalc(542, 352), {
+    icon: toddlersIcon,
+    pane: 'toddlers'
+})
+
+export const toddlerBowl = L.marker(latLngCalc(321, 1043), {
     icon: toddlersIcon,
     pane: 'toddlers'
 })
@@ -134,4 +138,74 @@ export const bigSlide = L.marker(latLngCalc(388, 1025), {
 export const carouselSlide = L.marker(latLngCalc(312, 1318), {
     icon: extremeIcon,
     pane: 'extreme'
+})
+
+// WC Markers
+export const nwRestroom = L.marker(latLngCalc(584, 295), {
+    icon: wcIcon,
+    pane: 'wc'
+})
+
+export const pirateRestroom = L.marker(latLngCalc(536, 399), {
+    icon: wcIcon,
+    pane: 'wc'
+})
+
+export const beachRestroom = L.marker(latLngCalc(556, 543), {
+    icon: wcIcon,
+    pane: 'wc'
+})
+
+export const centralRestroom = L.marker(latLngCalc(455, 588), {
+    icon: wcIcon,
+    pane: 'wc'
+})
+
+export const mainSWRestroom = L.marker(latLngCalc(232, 901), {
+    icon: wcIcon,
+    pane: 'wc'
+})
+
+export const mainSERestroom = L.marker(latLngCalc(258, 1022), {
+    icon: wcIcon,
+    pane: 'wc'
+})
+
+// Locker Markers
+export const NWLockers = L.marker(latLngCalc(587, 326), {
+    icon: lockersIcon,
+    pane: 'lockers'
+})
+
+export const SELockers = L.marker(latLngCalc(269, 974), {
+    icon: lockersIcon,
+    pane: 'lockers'
+})
+
+// Restaurant Markers
+export const centralFood = L.marker(latLngCalc(474, 491), {
+    icon: foodIcon,
+    pane: 'food'
+})
+
+export const beachFood = L.marker(latLngCalc(518, 595), {
+    icon: foodIcon,
+    pane: 'food'
+})
+
+export const mainFood = L.marker(latLngCalc(221, 843), {
+    icon: foodIcon,
+    pane: 'food'
+})
+
+// Parking Markers 
+export const mainParking = L.marker(latLngCalc(134, 735), {
+    icon: parkingIcon,
+    pane: 'parking'
+})
+
+// First Aid Markers
+export const mainAid = L.marker(latLngCalc(313, 918), {
+    icon: aidIcon,
+    pane: 'aid'
 })

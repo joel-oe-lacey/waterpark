@@ -50,19 +50,19 @@ mapid.on('click', onMapClick);
 mapid.createPane('toddlers')
 mapid.createPane('everyone')
 mapid.createPane('family')
-
+mapid.createPane('extreme')
+mapid.createPane('wc')
+mapid.createPane('lockers')
 
 mapid.createPane('aid')
-mapid.createPane('extreme')
 mapid.createPane('food')
-mapid.createPane('lockers')
 mapid.createPane('parking')
-mapid.createPane('wc')
 
 
 import {
     pirateShip,
     toddlerSlide,
+    toddlerBowl,
     lazyRiver,
     circus,
     pirateLagoon,
@@ -81,19 +81,42 @@ import {
     curvySlide,
     speedSlide,
     bigSlide,
-    carouselSlide
+    carouselSlide,
+    nwRestroom,
+    pirateRestroom,
+    beachRestroom,
+    centralRestroom,
+    mainSWRestroom,
+    mainSERestroom,
+    NWLockers,
+    SELockers,
+    centralFood,
+    beachFood,
+    mainFood,
+    mainParking,
+    mainAid
 } from './markers.js'
 
-const toddler = L.layerGroup([pirateShip, toddlerSlide])
+const toddler = L.layerGroup([pirateShip, toddlerSlide, toddlerBowl])
 const everyone = L.layerGroup([lazyRiver, circus, pirateLagoon, smallLagoon, wavepool, beach, flatSlide, windSlide, funnelShute, spiralShute, clamshell, funWall]);
 const family = L.layerGroup([lazyRiverSlide, cresentSlide])
 const extreme = L.layerGroup([loopSlide, curvySlide, speedSlide, bigSlide, carouselSlide])
+const wc = L.layerGroup([nwRestroom, pirateRestroom, beachRestroom, centralRestroom, mainSWRestroom, mainSERestroom])
+const lockers = L.layerGroup([NWLockers, SELockers])
+const food = L.layerGroup([centralFood, beachFood, mainFood])
+const parking = L.layerGroup([mainParking])
+const aid = L.layerGroup([mainAid])
 
 // Add markers to their respective panes 
 toddler.addTo(mapid);
 everyone.addTo(mapid);
 family.addTo(mapid);
 extreme.addTo(mapid);
+wc.addTo(mapid);
+lockers.addTo(mapid);
+food.addTo(mapid);
+parking.addTo(mapid);
+aid.addTo(mapid);
 
 const filterMap = e => {
     // console.log('tab event', e)
