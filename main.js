@@ -76,17 +76,24 @@ import {
     clamshell,
     funWall,
     lazyRiverSlide,
-    cresentSlide
+    cresentSlide,
+    loopSlide,
+    curvySlide,
+    speedSlide,
+    bigSlide,
+    carouselSlide
 } from './markers.js'
 
 const toddler = L.layerGroup([pirateShip, toddlerSlide])
 const everyone = L.layerGroup([lazyRiver, circus, pirateLagoon, smallLagoon, wavepool, beach, flatSlide, windSlide, funnelShute, spiralShute, clamshell, funWall]);
 const family = L.layerGroup([lazyRiverSlide, cresentSlide])
+const extreme = L.layerGroup([loopSlide, curvySlide, speedSlide, bigSlide, carouselSlide])
 
 // Add markers to their respective panes 
 toddler.addTo(mapid);
 everyone.addTo(mapid);
 family.addTo(mapid);
+extreme.addTo(mapid);
 
 const filterMap = e => {
     // console.log('tab event', e)

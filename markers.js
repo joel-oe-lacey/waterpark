@@ -109,3 +109,29 @@ export const cresentSlide = L.marker(latLngCalc(475, 405), {
     icon: familySlideIcon,
     pane: 'family'
 })
+
+// Extreme Slides Markers
+export const loopSlide = L.marker(latLngCalc(462, 854), {
+    icon: extremeIcon,
+    pane: 'extreme'
+})
+
+export const curvySlide = L.marker(latLngCalc(410, 810), {
+    icon: extremeIcon,
+    pane: 'extreme'
+})
+
+export const speedSlide = L.marker(latLngCalc(346, 808), {
+    icon: extremeIcon,
+    pane: 'extreme'
+})
+
+export const bigSlide = L.marker(latLngCalc(388, 1025), {
+    icon: extremeIcon,
+    pane: 'extreme'
+})
+
+export const carouselSlide = L.marker(latLngCalc(312, 1318), {
+    icon: extremeIcon,
+    pane: 'extreme'
+})
