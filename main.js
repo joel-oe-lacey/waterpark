@@ -26,8 +26,6 @@ const mapid = L.map('map', {
     scrollWheelZoom: false,
 });
 
-
-
 //save the ratio of img dimensions/browser dimensions for point scaling 
 //read more here: https://leafletjs.com/examples/crs-simple/crs-simple.html 
 //pixel vs map unit 
@@ -48,95 +46,54 @@ function onMapClick(e) {
 
 mapid.on('click', onMapClick);
 
-const latLngCalc = (lat, lng) => {
-    // marker is getting offset by the page height, need to work on that bug
-    // lat long coords of 0, 0 are 0, pageHeight on container, so this currently accounts for that in coords. 
-    // read docs for more details 
-    //marker positions to top left, but we want marker over point, so need to adjust for dimensions 
-    const latMarkerNorm = 55;
-    const lngMarkerNorm = -22;
+//panes
+mapid.createPane('toddlers')
+mapid.createPane('everyone')
+mapid.createPane('family')
 
-    // return L.latLng((lat + height + latMarkerNorm), (lng + lngMarkerNorm))
-    return L.latLng((lat + height ), (lng ))
+
+mapid.createPane('aid')
+mapid.createPane('extreme')
+mapid.createPane('food')
+mapid.createPane('lockers')
+mapid.createPane('parking')
+mapid.createPane('wc')
+
+
+import {
+    pirateShip,
+    toddlerSlide,
+    lazyRiver,
+    circus,
+    pirateLagoon,
+    smallLagoon,
+    wavepool,
+    beach,
+    flatSlide,
+    windSlide,
+    funnelShute,
+    spiralShute,
+    clamshell,
+    funWall,
+    lazyRiverSlide,
+    cresentSlide
+} from './markers.js'
+
+const toddler = L.layerGroup([pirateShip, toddlerSlide])
+const everyone = L.layerGroup([lazyRiver, circus, pirateLagoon, smallLagoon, wavepool, beach, flatSlide, windSlide, funnelShute, spiralShute, clamshell, funWall]);
+const family = L.layerGroup([lazyRiverSlide, cresentSlide])
+
+// Add markers to their respective panes 
+toddler.addTo(mapid);
+everyone.addTo(mapid);
+family.addTo(mapid);
+
+const filterMap = e => {
+    // console.log('tab event', e)
+    const tabID = e.target.parentNode.id;
+    console.log(tabID)
+    $(`#${tabID}`).toggleClass('greyscale');
+    $('.leaflet-test1-pane').css('display', 'none');
 }
 
-//split to separate files 
-//icons
-import aidIconImg from './assets/aidIcon.png';
-import extremeIconImg from './assets/extremeIcon.png';
-import familySlideIconImg from './assets/familySlideIcon.png';
-import forEveryoneIconImg from './assets/forEveryoneIcon.png';
-import foodIconImg from './assets/foodIcon.png';
-import lockersIconImg from './assets/lockersIcon.png';
-import parkingIconImg from './assets/parkingIcon.png';
-import toddlersIconImg from './assets/toddlersIcon.png';
-import wcIconImg from './assets/wcIcon.png';
-
-const testIcon = L.icon({
-    iconUrl: foodIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [22, 55],
-});
-const aidIcon = L.icon({
-    iconUrl: aidIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [22, 55],
-});
-const extremeIcon = L.icon({
-    iconUrl: extremeIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [22, 55],
-})
-const familySlideIcon = L.icon({
-    iconUrl: familySlideIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [22, 55],
-})
-const forEveryoneIcon = L.icon({
-    iconUrl: forEveryoneIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [22, 55],
-})
-const foodIcon = L.icon({
-    iconUrl: foodIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [22, 55],
-})
-const lockersIcon = L.icon({
-    iconUrl: lockersIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [22, 55],
-})
-const parkingIcon = L.icon({
-    iconUrl: parkingIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [22, 55],
-})
-const toddlersIcon = L.icon({
-    iconUrl: toddlersIconImg,
-    iconSize: [40, 40],
-    iconAnchor: [0, 0],
-})
-const wcIcon = L.icon({
-    iconUrl: wcIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [22, 55],
-})
-
-//markers
-L.marker(latLngCalc(130, 115), {
-    icon: testIcon,
-    // pane: 'overlayPane'
-}).addTo(mapid);
-
-L.marker(latLngCalc(500, 285), {
-    icon: toddlersIcon,
-}).addTo(mapid);
-
-L.marker(latLngCalc(315, 1315), {
-    icon: extremeIcon,
-}).addTo(mapid);
-
-L.marker(latLngCalc(571, 241), {
-    icon: forEveryoneIcon,
-}).addTo(mapid);
+$('.tab').on('click', filterMap);
