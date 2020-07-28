@@ -1,5 +1,5 @@
 // Variables
-@toddlersColor: #b377d9;
+@toddlersColor: hsl(277, 56%, 66%);
 @everyoneColor: #7277d5;
 @familyColor: #4a8bdb;
 @extremeColor: #3bbeb0;
@@ -8,6 +8,7 @@
 @foodColor: #f59b43;
 @parkingColor: #e7663f;
 @firstaidColor: #d9434e;
+@titleColor: #3071d4;
 
 // Reset
 a,
@@ -124,6 +125,16 @@ body {
     align-items: center;
 }
 
+.title {
+    height: 10%;
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: @titleColor;
+    letter-spacing: .4rem;
+}
+
 .tiles {
     height: 100%;
     width: 70%;
@@ -133,7 +144,7 @@ body {
 }
 
 .tile {
-    height: 275px;
+    height: 300px;
     width: 240px;
     display: flex;
     flex-direction: column;
@@ -153,6 +164,51 @@ body {
         object-fit: cover;
     }
 }
+
+.tile-title {
+    height: 20%;
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile-icon {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    z-index: 99999;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.tile-buttons {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        margin: 1%;
+        height: 60%;
+        width: 15%;
+        background-color: transparent;
+        border: 1px solid lightgrey;
+        color: @titleColor;
+    }
+}
+
+
 
 // Tabs
 .tabs {
@@ -182,6 +238,10 @@ body {
     display: flex;
     flex-direction: column;
 
+    &:hover {
+        cursor: pointer;
+    }
+
     h1 {
         height: 75%;
         width: 100%;
@@ -199,38 +259,3 @@ body {
     }
 }
 
-.toddlers {
-    background-color: @toddlersColor;
-}
-
-.everyone {
-    background-color: @everyoneColor;
-}
-
-.family {
-    background-color: @familyColor;
-}
-
-.extreme {
-    background-color: @extremeColor;
-}
-
-.wc {
-    background-color: @wcColor;
-}
-
-.lockers {
-    background-color: @lockerColor;
-}
-
-.food {
-    background-color: @foodColor;
-}
-
-.parking {
-    background-color: @parkingColor;
-}
-
-.firstaid {
-    background-color: @firstaidColor;
-}
