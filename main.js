@@ -129,3 +129,35 @@ const filterMap = e => {
 
 $('.tab').on('click', filterMap);
 
+// Tile 
+import attractionsByType from './attractions';
+const colorMap = {
+    toddlers: 'hsl(277, 56%, 66%)',
+    everyone: '#7277d5',
+    family: '#4a8bdb',
+    extreme: '#3bbeb0',
+    wc: '#b0c151',
+    locker: '#f5ba42',
+    food: '#f59b43',
+    parking: '#e7663f',
+    firstaid: '#d9434e'}
+
+const generateTiles = attractionsByType.map(attr => {
+    const {attrType, name, photoLink, videoLink, img, markerName} = attr;
+    const color = colorMap[attrType];
+
+    return (`
+        <section class="tile">
+            <section class="tile-picture" style="border-bottom: 2px solid ${color}">
+                <span class="tile-icon" role="img" aria-label="glyph" style="color:${color}">☆</span>
+                <img src='./assets/${img}' alt="A waterslide with a yellow carousel pattern">
+            </section>
+            <h3 class="tile-title" style="color:${color}">${name}</h3>
+            <section class="tile-buttons">
+                <button class="tile-button" data-marker=${markerName}>☆</button>
+                <button class="tile-button" data-photo-link=${photoLink}>☆</button>
+                <button class="tile-button" data-video-link=${videoLink}>☆</button>
+            </section>
+        </section>`
+    )
+})
