@@ -35,7 +35,7 @@ export const attractionsByType = {
             markerName: 'toddlerBowl'
         }
     ],
-    forEveryone: [
+    everyone: [
         {
             attrType: 'everyone',
             name: 'Lazy River',

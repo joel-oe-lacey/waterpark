@@ -180,11 +180,20 @@ const filterMap = e => {
         //delete and rerender 
         delete selectedAttractions[tabID]
         //run attraction indexing
+        const visibleAttractions = indexAttractions();
         //generate tab display
+        const tileHtml = generateTiles(visibleAttractions);
+        $('.tiles').html(tileHtml)
         //change tab color 
     }
 }
 
+//isotope animations
+$('.tiles').isotope({
+    // options
+    itemSelector: '.tile',
+    layoutMode: 'fitRows'
+});
 
 
 $('.tab').on('click', filterMap);
