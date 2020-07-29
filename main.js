@@ -16,7 +16,6 @@ import {
 //all points should be placed in relative size also? 
 const width = $(window).width();
 const height = $(window).height();
-console.log(height);
 
 //is center making a difference compared to set bounds?
 const mapid = L.map('map', {
@@ -117,20 +116,80 @@ food.addTo(mapid);
 parking.addTo(mapid);
 aid.addTo(mapid);
 
-// first  
+//can't use Set because it has poor compatibility with IE 
+const selectedAttractions = {};
+import {attractionsByType} from './attractions';
+
+//this does the full index every time one is changed, reduce the work here? 
+const indexAttractions = () => {
+    return Object.keys(selectedAttractions).reduce((visibleAttractions, attrType) => {
+        visibleAttractions = [...visibleAttractions, ...selectedAttractions[attrType]]
+        return visibleAttractions;
+    }, [])
+}
+
+const generateTiles = attractions => {
+    return attractions.map(attr => {
+        const {
+            attrType,
+            name,
+            photoLink,
+            videoLink,
+            img,
+            markerName
+        } = attr;
+        const color = colorMap[attrType];
+
+        return (`
+        <section class="tile">
+            <section class="tile-picture" style="border-bottom: 2px solid ${color}">
+                <span class="tile-icon" role="img" aria-label="glyph" style="color:${color}">☆</span>
+                <img src='${img.url}' alt="${img.alt}">
+            </section>
+            <h3 class="tile-title" style="color:${color}">${name}</h3>
+            <section class="tile-buttons">
+                <button class="tile-button" data-marker=${markerName}>☆</button>
+                <button class="tile-button" data-photo-link=${photoLink}>☆</button>
+                <button class="tile-button" data-video-link=${videoLink}>☆</button>
+            </section>
+        </section>`)
+    })
+}
+
+//if you organized all attractions as flat array, then you'd have to filter through all of them on each pass
+//by storing them as an object and only accessing the types you need you cut down on volume
+//a bit inconsequential at this scale
 
 const filterMap = e => {
-    // console.log('tab event', e)
     const tabID = e.target.parentNode.id;
     console.log(tabID)
     $(`#${tabID}`).toggleClass('greyscale');
-    $('.everyone').css('display', 'none');
+    // $('.everyone').css('display', 'none');
+
+    if (!selectedAttractions[tabID]) {
+        //add to selected attractions
+        selectedAttractions[tabID] = attractionsByType[tabID];
+        //run attraction indexing
+        const visibleAttractions = indexAttractions();
+        //generate tab display
+        const tileHtml = generateTiles(visibleAttractions);
+        $('.tiles').html(tileHtml)
+        //change tab color 
+    } else if (selectedAttractions[tabID]) {
+        //run explicit if check for input safety
+        //delete and rerender 
+        delete selectedAttractions[tabID]
+        //run attraction indexing
+        //generate tab display
+        //change tab color 
+    }
 }
+
+
 
 $('.tab').on('click', filterMap);
 
 // Tile 
-import attractionsByType from './attractions';
 const colorMap = {
     toddlers: 'hsl(277, 56%, 66%)',
     everyone: '#7277d5',
@@ -142,22 +201,3 @@ const colorMap = {
     parking: '#e7663f',
     firstaid: '#d9434e'}
 
-const generateTiles = attractionsByType.map(attr => {
-    const {attrType, name, photoLink, videoLink, img, markerName} = attr;
-    const color = colorMap[attrType];
-
-    return (`
-        <section class="tile">
-            <section class="tile-picture" style="border-bottom: 2px solid ${color}">
-                <span class="tile-icon" role="img" aria-label="glyph" style="color:${color}">☆</span>
-                <img src='./assets/${img}' alt="A waterslide with a yellow carousel pattern">
-            </section>
-            <h3 class="tile-title" style="color:${color}">${name}</h3>
-            <section class="tile-buttons">
-                <button class="tile-button" data-marker=${markerName}>☆</button>
-                <button class="tile-button" data-photo-link=${photoLink}>☆</button>
-                <button class="tile-button" data-video-link=${videoLink}>☆</button>
-            </section>
-        </section>`
-    )
-})
