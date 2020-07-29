@@ -1,3 +1,16 @@
+// Variables
+@toddlersColor: hsl(277, 56%, 66%);
+@everyoneColor: #7277d5;
+@familyColor: #4a8bdb;
+@extremeColor: #3bbeb0;
+@wcColor: #b0c151;
+@lockerColor: #f5ba42;
+@foodColor: #f59b43;
+@parkingColor: #e7663f;
+@firstaidColor: #d9434e;
+@titleColor: #3071d4;
+
+// Reset
 a,
 abbr,
 acronym,
@@ -88,7 +101,256 @@ var {
     vertical-align: baseline;
 }
 
-.map {
-    height: 500px;
-    background-color: blue;
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+.tiles-container {
+    height: 250%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    height: 10%;
+    width: 100%;
+    font-size: 3rem;
+    font-weight: bold;
+    color: @titleColor;
+    letter-spacing: .4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tiles {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.tile {
+    height: 300px;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+}
+
+.tile-picture {
+    height: 60%;
+    width: 100%;
+    border-bottom: 2px solid black;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.tile-title {
+    height: 20%;
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile-icon {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    z-index: 99999;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.tile-buttons {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        margin: 1%;
+        height: 60%;
+        width: 15%;
+        background-color: transparent;
+        border: 1px solid lightgrey;
+        color: @titleColor;
+    }
+}
+
+
+
+// Tabs
+.tabs {
+    height: 18%;
+    width: 100%;
+    position: absolute;
+    // background-color: red;
+    z-index: 9999;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tabs-cont {
+    height: 100%;
+    width: 80%;
+    // background-color: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tab {
+    height: 100%;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    h1 {
+        height: 75%;
+        width: 100%;
+        font-size: 2rem;
+        color: white;
+        text-align: center;
+    }
+
+    h3 {
+        height: 25%;
+        width: 100%;
+        font-size: .9rem;
+        color: white;
+        text-align: center;
+    }
+}
+
+#toddlers {
+    background-color: @toddlersColor;
+}
+
+#everyone {
+    background-color: @everyoneColor;
+}
+
+#family {
+    background-color: @familyColor;
+}
+
+#extreme {
+    background-color: @extremeColor;
+}
+
+#wc {
+    background-color: @wcColor;
+}
+
+#lockers {
+    background-color: @lockerColor;
+}
+
+#food {
+    background-color: @foodColor;
+}
+
+#parking {
+    background-color: @parkingColor;
+}
+
+#firstaid {
+    background-color: @firstaidColor;
+}
+
+.greyscale {
+    filter: saturate(0%);
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    -ms-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+
+    // can do a greyscale animation 
+    // https: //stackoverflow.com/questions/16340159/greyscale-background-css-images
+}
+
+// breadcrumb comes in from elsewhere
+// add for local dev 
+.x-breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 10px 15px;
+
+    ul > li {
+        float: left;
+        margin-right: 12px;
+        padding-right: 12px;
+        position: relative;
+    }
+
+    ul > li::before {
+        display: block;
+        position: absolute;
+        content: '/';
+        top: 50%;
+        right: 0;
+        font-size: 8px;
+        margin-top: -4px;
+    }
+
+    ul > li > a, span
+    {
+        float: left;
+        font-size: 10px;
+        font-weight: 700;
+        font-family: 'Open Sans',
+        sans-serif;
+        color: #949494;
+        line-height: 14px;
+        letter-spacing: .2em;
+        border-bottom: 1px solid transparent;
+    }
+
+    span:hover {
+        border-color: #949494;
+        -moz-transition: border-color .2s ease-in-out;
+        -webkit-transition: border-color .2s ease-in-out;
+        -o-transition: border-color .2s ease-in-out;
+        transition: border-color .2s ease-in-out;
+    }
 }
