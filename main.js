@@ -16,6 +16,7 @@ import {
 //all points should be placed in relative size also? 
 const width = $(window).width();
 const height = $(window).height();
+console.log(height);
 
 //is center making a difference compared to set bounds?
 const mapid = L.map('map', {
@@ -53,11 +54,9 @@ mapid.createPane('family')
 mapid.createPane('extreme')
 mapid.createPane('wc')
 mapid.createPane('lockers')
-
-mapid.createPane('aid')
 mapid.createPane('food')
 mapid.createPane('parking')
-
+mapid.createPane('aid')
 
 import {
     pirateShip,
@@ -118,12 +117,15 @@ food.addTo(mapid);
 parking.addTo(mapid);
 aid.addTo(mapid);
 
+// first  
+
 const filterMap = e => {
     // console.log('tab event', e)
     const tabID = e.target.parentNode.id;
     console.log(tabID)
     $(`#${tabID}`).toggleClass('greyscale');
-    $('.leaflet-test1-pane').css('display', 'none');
+    $('.everyone').css('display', 'none');
 }
 
 $('.tab').on('click', filterMap);
+
