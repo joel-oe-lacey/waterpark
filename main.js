@@ -21,23 +21,26 @@ import {
 const width = $(window).width();
 const height = $(window).height();
 
+const bounds = L.latLngBounds([0, 0], [height, width]);
 //is center making a difference compared to set bounds?
 const mapid = L.map('map', {
     crs: L.CRS.Simple,
-    center: [height/2, width/2],
+    center: bounds.getCenter(),
     zoom: 0,
     zoomControl: false,
     scrollWheelZoom: false,
+    dragging: true,
+    maxBounds: bounds,
+    maxBoundsViscosity: 1.0
 });
 
 //save the ratio of img dimensions/browser dimensions for point scaling 
 //read more here: https://leafletjs.com/examples/crs-simple/crs-simple.html 
 //pixel vs map unit 
-const widthRatio = 1920/width;
-const heightRatio = 1080/height;
- 
-const testBounds = L.latLngBounds([0, 0], [height, width]);
-L.imageOverlay(mapImage, testBounds).addTo(mapid).getBounds();
+const widthRatio = 1920 / width;
+const heightRatio = 1080 / height;
+
+L.imageOverlay(mapImage, bounds).addTo(mapid).getBounds();
 
 function onMapClick(e) {
     var mapWidth = mapid._container.offsetWidth;
