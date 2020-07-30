@@ -6,7 +6,11 @@ import kidsArea from './assets/03_640x426_2.jpg';
 import restaurant from './assets/04_640x426_3.jpg';
 import firstAid from './assets/05_640x426_4.jpg';
 
-import $ from 'jquery';
+var $ = require('jquery');
+var jQueryBridget = require('jquery-bridget');
+var Isotope = require('isotope-layout');
+// make Isotope a jQuery plugin
+jQueryBridget('isotope', Isotope, $);
 import {
     map
 } from 'leaflet';
@@ -118,82 +122,50 @@ aid.addTo(mapid);
 
 //can't use Set because it has poor compatibility with IE 
 const selectedAttractions = {};
-import {attractionsByType} from './attractions';
+import { attractionsByType } from './attractions';
 
-//this does the full index every time one is changed, reduce the work here? 
-const indexAttractions = () => {
-    return Object.keys(selectedAttractions).reduce((visibleAttractions, attrType) => {
-        visibleAttractions = [...visibleAttractions, ...selectedAttractions[attrType]]
-        return visibleAttractions;
-    }, [])
-}
-
-const generateTiles = attractions => {
-    return attractions.map(attr => {
-        const {
-            attrType,
-            name,
-            photoLink,
-            videoLink,
-            img,
-            markerName
-        } = attr;
-        const color = colorMap[attrType];
-
-        return (`
-        <section class="tile">
-            <section class="tile-picture" style="border-bottom: 2px solid ${color}">
-                <span class="tile-icon" role="img" aria-label="glyph" style="color:${color}">☆</span>
-                <img src='${img.url}' alt="${img.alt}">
-            </section>
-            <h3 class="tile-title" style="color:${color}">${name}</h3>
-            <section class="tile-buttons">
-                <button class="tile-button" data-marker=${markerName}>☆</button>
-                <button class="tile-button" data-photo-link=${photoLink}>☆</button>
-                <button class="tile-button" data-video-link=${videoLink}>☆</button>
-            </section>
-        </section>`)
-    })
-}
-
-//if you organized all attractions as flat array, then you'd have to filter through all of them on each pass
-//by storing them as an object and only accessing the types you need you cut down on volume
-//a bit inconsequential at this scale
+//isotope animations
+const $grid = $('.tiles').isotope({
+    // options
+    itemSelector: '.tile',
+    layoutMode: 'fitRows'
+});
 
 const filterMap = e => {
     const tabID = e.target.parentNode.id;
     console.log(tabID)
     $(`#${tabID}`).toggleClass('greyscale');
+
+    $grid.isotope({
+        filter: '.everyone'
+    });
+
+
     // $('.everyone').css('display', 'none');
 
-    if (!selectedAttractions[tabID]) {
-        //add to selected attractions
-        selectedAttractions[tabID] = attractionsByType[tabID];
-        //run attraction indexing
-        const visibleAttractions = indexAttractions();
-        //generate tab display
-        const tileHtml = generateTiles(visibleAttractions);
-        $('.tiles').html(tileHtml)
-        //change tab color 
-    } else if (selectedAttractions[tabID]) {
-        //run explicit if check for input safety
-        //delete and rerender 
-        delete selectedAttractions[tabID]
-        //run attraction indexing
-        const visibleAttractions = indexAttractions();
-        //generate tab display
-        const tileHtml = generateTiles(visibleAttractions);
-        $('.tiles').html(tileHtml)
-        //change tab color 
-    }
+    // if (!selectedAttractions[tabID]) {
+    //     //add to selected attractions
+    //     selectedAttractions[tabID] = attractionsByType[tabID];
+    //     //run attraction indexing
+    //     const visibleAttractions = indexAttractions();
+    //     //generate tab display
+    //     const tileHtml = generateTiles(visibleAttractions);
+    //     $('.tiles').html(tileHtml)
+    //     //change tab color 
+    // } else if (selectedAttractions[tabID]) {
+    //     //run explicit if check for input safety
+    //     //delete and rerender 
+    //     delete selectedAttractions[tabID]
+    //     //run attraction indexing
+    //     const visibleAttractions = indexAttractions();
+    //     //generate tab display
+    //     const tileHtml = generateTiles(visibleAttractions);
+    //     $('.tiles').html(tileHtml)
+    //     //change tab color 
+    // }
 }
 
-//isotope animations
-$('.tiles').isotope({
-    // options
-    itemSelector: '.tile',
-    layoutMode: 'fitRows'
-});
+
 
 
 $('.tab').on('click', filterMap);
