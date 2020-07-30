@@ -211,7 +211,52 @@ body {
     }
 }
 
+.tile-mixin(@color) {
+    .tile-picture {
+        border-bottom: 2px solid @color;
+    }
 
+    span,
+    .tile-title {
+        color: @color;
+    }
+}
+
+.toddlers-tile {
+    .tile-mixin(@toddlersColor)
+}
+
+.everyone-tile {
+    .tile-mixin(@everyoneColor)
+}
+
+.family-tile {
+    .tile-mixin(@familyColor)
+}
+
+.extreme-tile {
+    .tile-mixin(@extremeColor)
+}
+
+.wc-tile {
+    .tile-mixin(@wcColor)
+}
+
+.locker-tile {
+    .tile-mixin(@lockerColor)
+}
+
+.food-tile {
+    .tile-mixin(@foodColor)
+}
+
+.parking-tile {
+    .tile-mixin(@parkingColor)
+}
+
+.aid-tile {
+    .tile-mixin(@firstaidColor)
+}
 
 // Tabs
 .tabs {
@@ -354,3 +399,4 @@ body {
         transition: border-color .2s ease-in-out;
     }
 }
+
