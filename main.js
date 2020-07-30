@@ -14,6 +14,9 @@ jQueryBridget('isotope', Isotope, $);
 import {
     map
 } from 'leaflet';
+window.jQuery = $;
+var fancybox = require('@fancyapps/fancybox');
+// jQueryBridget('fancybox', Fancybox, $);
 
 //these should be based on browser
 //then you'll need to scale your point placement accordingly, relative to image size 
@@ -102,6 +105,43 @@ import {
     mainAid
 } from './markers.js'
 
+const markers = { pirateShip,
+    toddlerSlide,
+    toddlerBowl,
+    lazyRiver,
+    circus,
+    pirateLagoon,
+    smallLagoon,
+    wavepool,
+    beach,
+    flatSlide,
+    windSlide,
+    funnelShute,
+    spiralShute,
+    clamshell,
+    funWall,
+    lazyRiverSlide,
+    cresentSlide,
+    loopSlide,
+    curvySlide,
+    speedSlide,
+    bigSlide,
+    carouselSlide,
+    nwRestroom,
+    pirateRestroom,
+    beachRestroom,
+    centralRestroom,
+    mainSWRestroom,
+    mainSERestroom,
+    NWLockers,
+    SELockers,
+    centralFood,
+    beachFood,
+    mainFood,
+    mainParking,
+    mainAid
+};
+
 const toddler = L.layerGroup([pirateShip, toddlerSlide, toddlerBowl])
 const everyone = L.layerGroup([lazyRiver, circus, pirateLagoon, smallLagoon, wavepool, beach, flatSlide, windSlide, funnelShute, spiralShute, clamshell, funWall]);
 const family = L.layerGroup([lazyRiverSlide, cresentSlide])
@@ -123,6 +163,15 @@ food.addTo(mapid);
 parking.addTo(mapid);
 aid.addTo(mapid);
 
+const navToMarker = event => {
+    const targetMarker = event.target.dataset.marker;
+    markers[targetMarker].bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup('')
+}
+
+$('.marker-nav').on('click', navToMarker);
+
+// markers['toddlerSlide'].bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup('')
+
 //can't use Set because it has poor compatibility with IE 
 const selectedAttractions = {};
 import { attractionsByType } from './attractions';
@@ -140,48 +189,9 @@ const filterMap = e => {
     $(`#${tabID}`).toggleClass('greyscale');
 
     $grid.isotope({
-        filter: '.everyone'
+        filter: '.everyone-tile'
     });
-
-
     // $('.everyone').css('display', 'none');
-
-    // if (!selectedAttractions[tabID]) {
-    //     //add to selected attractions
-    //     selectedAttractions[tabID] = attractionsByType[tabID];
-    //     //run attraction indexing
-    //     const visibleAttractions = indexAttractions();
-    //     //generate tab display
-    //     const tileHtml = generateTiles(visibleAttractions);
-    //     $('.tiles').html(tileHtml)
-    //     //change tab color 
-    // } else if (selectedAttractions[tabID]) {
-    //     //run explicit if check for input safety
-    //     //delete and rerender 
-    //     delete selectedAttractions[tabID]
-    //     //run attraction indexing
-    //     const visibleAttractions = indexAttractions();
-    //     //generate tab display
-    //     const tileHtml = generateTiles(visibleAttractions);
-    //     $('.tiles').html(tileHtml)
-    //     //change tab color 
-    // }
 }
 
-
-
-
 $('.tab').on('click', filterMap);
-
-// Tile 
-const colorMap = {
-    toddlers: 'hsl(277, 56%, 66%)',
-    everyone: '#7277d5',
-    family: '#4a8bdb',
-    extreme: '#3bbeb0',
-    wc: '#b0c151',
-    locker: '#f5ba42',
-    food: '#f59b43',
-    parking: '#e7663f',
-    firstaid: '#d9434e'}
-
