@@ -186,10 +186,10 @@ const $grid = $('.tiles').isotope({
 const filterMap = e => {
     const tabID = e.target.parentNode.id;
     console.log(tabID)
-    $(`#${tabID}`).toggleClass('greyscale');
+    // $(`#${tabID}`).toggleClass('greyscale');
 
     $grid.isotope({
-        filter: '.everyone-tile'
+        filter: `.${tabID}-tile`
     });
     // $('.everyone').css('display', 'none');
 }
@@ -209,36 +209,31 @@ $('[data-fancybox="images"]').fancybox({
     }
 });
 
+import {attractionsByMarker} from './attractions'
+
 //open marker, create popup. 
 //need title, need image, type
 //pass object through as datapoint 
 //store everything in an imported object stored under a key of markerID 
 //then target that here
 //if certain properties are empty don't display on popup
-const generateTiles = attractions => {
-    return attractions.map(attr => {
-        const {
+const generatePopup = event => {
+    const attr = attractionsByMarker[event.target.dataset.marker];
+    const {
             attrType,
             name,
             photoLink,
             videoLink,
             img,
-            markerName
-        } = attr;
-        const color = colorMap[attrType];
+    } = attr;
 
-        return (`
-        <section class="tile">
-            <section class="tile-picture" style="border-bottom: 2px solid ${color}">
-                <span class="tile-icon" role="img" aria-label="glyph" style="color:${color}">☆</span>
-                <img src='${img.url}' alt="${img.alt}">
-            </section>
-            <h3 class="tile-title" style="color:${color}">${name}</h3>
+    return (`
+        <section class = "popup ${attrType}" >
+            <img src='${img.url}' alt="${img.alt}">
+            <h3 class="tile-title">${name}</h3>
             <section class="tile-buttons">
-                <button class="tile-button" data-marker=${markerName}>☆</button>
                 <button class="tile-button" data-photo-link=${photoLink}>☆</button>
                 <button class="tile-button" data-video-link=${videoLink}>☆</button>
             </section>
         </section>`)
-    })
-}
+    };
