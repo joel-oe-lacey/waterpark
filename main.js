@@ -229,7 +229,22 @@ $('[data-fancybox="images"]').fancybox({
     }
 });
 
+import {
+    attractionsByMarker
+} from './attractions'
 
+const navToMarker = event => {
+    const targetMarker = event.target.dataset.marker;
+    const popupContent = generatePopup(targetMarker);
+    const popup = L.popup().setContent(popupContent);
+    markers[targetMarker].bindPopup(popup, {
+        autoPan: false
+    }).openPopup('')
+
+    //need to set scroll to top
+}
+
+$('.marker-nav').on('click', navToMarker);
 
 //open marker, create popup. 
 //need title, need image, type
