@@ -34,7 +34,8 @@ const mapid = L.map('map', {
     scrollWheelZoom: false,
     dragging: true,
     maxBounds: bounds,
-    maxBoundsViscosity: 1.0
+    maxBoundsViscosity: 1.0,
+    attributionControl: false
 });
 
 //save the ratio of img dimensions/browser dimensions for point scaling 
@@ -43,7 +44,9 @@ const mapid = L.map('map', {
 const widthRatio = 1920 / width;
 const heightRatio = 1080 / height;
 
-L.imageOverlay(mapImage, bounds).addTo(mapid).getBounds();
+L.imageOverlay(mapImage, bounds, {
+    interactive: true
+}).addTo(mapid);
 
 function onMapClick(e) {
     var mapWidth = mapid._container.offsetWidth;
@@ -163,19 +166,6 @@ food.addTo(mapid);
 parking.addTo(mapid);
 aid.addTo(mapid);
 
-const navToMarker = event => {
-    const targetMarker = event.target.dataset.marker;
-    markers[targetMarker].bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup('')
-}
-
-$('.marker-nav').on('click', navToMarker);
-
-// markers['toddlerSlide'].bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup('')
-
-//can't use Set because it has poor compatibility with IE 
-const selectedAttractions = {};
-import { attractionsByType } from './attractions';
-
 //isotope animations
 const $grid = $('.tiles').isotope({
     // options
@@ -183,14 +173,44 @@ const $grid = $('.tiles').isotope({
     layoutMode: 'fitRows'
 });
 
+
+const selectedTabs = {};
+//would use Set but not supported by IE  
+const selectTab = selection => {
+    if (!selectedTabs[selection]) {
+        selectedTabs[selection] = selection;
+    } else {
+        delete selectedTabs[selection]
+    }
+}
+
+const generateFilter = () => {
+    return Object.keys(selectedTabs).reduce((filterString, selection) => {
+        console.log(filterString)
+        if (!filterString) {
+            filterString = `.${selection}-tile`
+        } else {
+            filterString = filterString + `, .${selection}-tile`
+        }
+        return filterString;
+    }, '')
+}
+
 const filterMap = e => {
     const tabID = e.target.parentNode.id;
-    console.log(tabID)
     // $(`#${tabID}`).toggleClass('greyscale');
+    selectTab(tabID)
+    const filter = generateFilter();
 
-    $grid.isotope({
-        filter: `.${tabID}-tile`
-    });
+    if(filter) {
+        $grid.isotope({
+            filter
+        });
+    } else {
+        $grid.isotope({
+            filter: '*'
+        });
+    }
     // $('.everyone').css('display', 'none');
 }
 
@@ -209,7 +229,7 @@ $('[data-fancybox="images"]').fancybox({
     }
 });
 
-import {attractionsByMarker} from './attractions'
+
 
 //open marker, create popup. 
 //need title, need image, type
@@ -217,8 +237,9 @@ import {attractionsByMarker} from './attractions'
 //store everything in an imported object stored under a key of markerID 
 //then target that here
 //if certain properties are empty don't display on popup
-const generatePopup = event => {
-    const attr = attractionsByMarker[event.target.dataset.marker];
+
+const generatePopup = targetMarker => {
+    const attr = attractionsByMarker[targetMarker];
     const {
             attrType,
             name,
@@ -228,10 +249,12 @@ const generatePopup = event => {
     } = attr;
 
     return (`
-        <section class = "popup ${attrType}" >
-            <img src='${img.url}' alt="${img.alt}">
-            <h3 class="tile-title">${name}</h3>
-            <section class="tile-buttons">
+        <section class="popup ${attrType}" >
+            <section class="popup-picture" >
+                <img src="${img.url}" alt="${img.alt}">
+            </section>
+            <h3 class="popup-title">${name}</h3>
+            <section class="popup-buttons">
                 <button class="tile-button" data-photo-link=${photoLink}>☆</button>
                 <button class="tile-button" data-video-link=${videoLink}>☆</button>
             </section>
