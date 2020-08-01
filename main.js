@@ -186,10 +186,10 @@ const colorMap = {
     family: 'hsl(213, 67%, 57%)',
     extreme: 'hsl(174, 53%, 49%)',
     wc: 'hsl(69, 47%, 54%)',
-    locker: 'hsl(40, 90%, 61%)',
+    lockers: 'hsl(40, 90%, 61%)',
     food: 'hsl(30, 90%, 61%)',
     parking: 'hsl(14, 78%, 58%)',
-    aid: 'hsl(356, 66%, 56%)',
+    firstaid: 'hsl(356, 66%, 56%)',
 }
 
 const desatColorMap = {
@@ -198,25 +198,35 @@ const desatColorMap = {
     family: 'hsl(213, 0%, 57%)',
     extreme: 'hsl(174, 0%, 49%)',
     wc: 'hsl(69, 0%, 54%)',
-    locker: 'hsl(40, 0%, 61%)',
+    lockers: 'hsl(40, 0%, 61%)',
     food: 'hsl(30, 0%, 61%)',
     parking: 'hsl(14, 0%, 58%)',
-    aid: 'hsl(356, 0%, 56%)',
+    firstaid: 'hsl(356, 0%, 56%)',
 }
 
 const selectTab = selection => {
+    if (!Object.keys(selectedTabs).length) {
+        Object.keys(desatColorMap).forEach(tab => {
+            $(`#${tab}`).css({
+                'background-color': `${desatColorMap[tab]}`,
+            })
+        })
+        $(`.tab`).addClass('recessed');
+    } 
     if (!selectedTabs[selection]) {
         selectedTabs[selection] = selection;
-        $(`#${selection}`).css({
-            'background-color': `${desatColorMap[selection]}`,
-            'transition': 'background-color 500ms'
-        })
-    } else {
-        delete selectedTabs[selection]
         $(`#${selection}`).css({
             'background-color': `${colorMap[selection]}`,
             'transition': 'background-color 500ms'
         })
+        $(`#${selection}`).removeClass('recessed');
+    } else {
+        delete selectedTabs[selection]
+        $(`#${selection}`).css({
+            'background-color': `${desatColorMap[selection]}`,
+            'transition': 'background-color 500ms'
+        })
+        $(`#${selection}`).addClass('recessed');
     }
 }
 
@@ -233,7 +243,6 @@ const generateFilter = () => {
 
 const filterMap = e => {
     const tabID = e.target.parentNode.id;
-    // $(`#${tabID}`).toggleClass('greyscale');
     selectTab(tabID)
     const filter = generateFilter();
 
@@ -246,7 +255,6 @@ const filterMap = e => {
             filter: '*'
         });
     }
-    // $('.everyone').css('display', 'none');
 }
 
 $('.tab').on('click', filterMap);
