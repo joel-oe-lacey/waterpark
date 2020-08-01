@@ -57,7 +57,7 @@ function onMapClick(e) {
     console.log(e);
 }
 
-mapid.on('click', onMapClick);
+// mapid.on('click', onMapClick);
 
 //panes
 mapid.createPane('toddlers')
@@ -176,17 +176,52 @@ const $grid = $('.tiles').isotope({
 
 const selectedTabs = {};
 //would use Set but not supported by IE  
+
+//color map obj
+//assign via jquery
+//assign class to recess button 
+const colorMap = {
+    toddlers: 'hsl(277, 56%, 66%)',
+    everyone: 'hsl(237, 54%, 64%)',
+    family: 'hsl(213, 67%, 57%)',
+    extreme: 'hsl(174, 53%, 49%)',
+    wc: 'hsl(69, 47%, 54%)',
+    locker: 'hsl(40, 90%, 61%)',
+    food: 'hsl(30, 90%, 61%)',
+    parking: 'hsl(14, 78%, 58%)',
+    aid: 'hsl(356, 66%, 56%)',
+}
+
+const desatColorMap = {
+    toddlers: 'hsl(277, 0%, 66%)',
+    everyone: 'hsl(237, 0%, 64%)',
+    family: 'hsl(213, 0%, 57%)',
+    extreme: 'hsl(174, 0%, 49%)',
+    wc: 'hsl(69, 0%, 54%)',
+    locker: 'hsl(40, 0%, 61%)',
+    food: 'hsl(30, 0%, 61%)',
+    parking: 'hsl(14, 0%, 58%)',
+    aid: 'hsl(356, 0%, 56%)',
+}
+
 const selectTab = selection => {
     if (!selectedTabs[selection]) {
         selectedTabs[selection] = selection;
+        $(`#${selection}`).css({
+            'background-color': `${desatColorMap[selection]}`,
+            'transition': 'background-color 500ms'
+        })
     } else {
         delete selectedTabs[selection]
+        $(`#${selection}`).css({
+            'background-color': `${colorMap[selection]}`,
+            'transition': 'background-color 500ms'
+        })
     }
 }
 
 const generateFilter = () => {
     return Object.keys(selectedTabs).reduce((filterString, selection) => {
-        console.log(filterString)
         if (!filterString) {
             filterString = `.${selection}-tile`
         } else {
