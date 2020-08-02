@@ -68,7 +68,7 @@ mapid.createPane('wc')
 mapid.createPane('lockers')
 mapid.createPane('food')
 mapid.createPane('parking')
-mapid.createPane('aid')
+mapid.createPane('firstaid')
 
 import {
     pirateShip,
@@ -145,7 +145,7 @@ const markers = { pirateShip,
     mainAid
 };
 
-const toddler = L.layerGroup([pirateShip, toddlerSlide, toddlerBowl])
+const toddlers = L.layerGroup([pirateShip, toddlerSlide, toddlerBowl])
 const everyone = L.layerGroup([lazyRiver, circus, pirateLagoon, smallLagoon, wavepool, beach, flatSlide, windSlide, funnelShute, spiralShute, clamshell, funWall]);
 const family = L.layerGroup([lazyRiverSlide, cresentSlide])
 const extreme = L.layerGroup([loopSlide, curvySlide, speedSlide, bigSlide, carouselSlide])
@@ -153,10 +153,10 @@ const wc = L.layerGroup([nwRestroom, pirateRestroom, beachRestroom, centralRestr
 const lockers = L.layerGroup([NWLockers, SELockers])
 const food = L.layerGroup([centralFood, beachFood, mainFood])
 const parking = L.layerGroup([mainParking])
-const aid = L.layerGroup([mainAid])
+const firstaid = L.layerGroup([mainAid])
 
 // Add markers to their respective panes 
-toddler.addTo(mapid);
+toddlers.addTo(mapid);
 everyone.addTo(mapid);
 family.addTo(mapid);
 extreme.addTo(mapid);
@@ -164,7 +164,7 @@ wc.addTo(mapid);
 lockers.addTo(mapid);
 food.addTo(mapid);
 parking.addTo(mapid);
-aid.addTo(mapid);
+firstaid.addTo(mapid);
 
 //isotope animations
 const $grid = $('.tiles').isotope({
@@ -210,6 +210,9 @@ const selectTab = selection => {
             $(`#${tab}`).css({
                 'background-color': `${desatColorMap[tab]}`,
             })
+            $(`.leaflet-${tab}-pane`).css({
+                'display': `none`,
+            })
         })
         $(`.tab`).addClass('recessed');
     } 
@@ -219,12 +222,18 @@ const selectTab = selection => {
             'background-color': `${colorMap[selection]}`,
             'transition': 'background-color 500ms'
         })
+        $(`.leaflet-${selection}-pane`).css({
+            'display': `initial`,
+        })
         $(`#${selection}`).removeClass('recessed');
     } else {
         delete selectedTabs[selection]
         $(`#${selection}`).css({
             'background-color': `${desatColorMap[selection]}`,
             'transition': 'background-color 500ms'
+        })
+        $(`.leaflet-${selection}-pane`).css({
+            'display': `none`,
         })
         $(`#${selection}`).addClass('recessed');
     }
