@@ -114,6 +114,7 @@ body {
 #map {
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 .tiles-container {
@@ -269,6 +270,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+
 }
 
 .tabs-cont {
@@ -277,14 +279,26 @@ body {
     // background-color: blue;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    // justify-content: space-between;
+
+    @media screen and (max-width: 1200px) {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
 }
 
 .tab {
     height: 100%;
-    width: 10%;
+    width: 110px;
     display: flex;
     flex-direction: column;
+    margin-right: 10px;
+
+    @media screen and (max-width: 1200px) {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
 
     &:hover {
         cursor: pointer;
@@ -305,6 +319,20 @@ body {
         color: white;
         text-align: center;
     }
+}
+
+.tab-nav {
+    object-fit: contain;
+    height: 100%;
+    width: 10%;
+}
+
+#tab-left {
+    transform: rotate(90deg);
+}
+
+#tab-right {
+    transform: rotate(-90deg);
 }
 
 #toddlers {
@@ -452,4 +480,9 @@ body {
     button:first-child {
         border-right: 1px solid white;
     }
+}
+
+.recessed {
+    margin-top: 5px;
+    // box-shadow: inset 3px 3px 15px 2px rgba(0, 0, 0, 0.3);
 }

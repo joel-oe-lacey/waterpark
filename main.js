@@ -1,10 +1,11 @@
 import './styles.less';
 import mapImage from './assets/01_1920x1080_Map.jpg';
 
-import waterslide from './assets/02_640x426_1.jpg';
-import kidsArea from './assets/03_640x426_2.jpg';
-import restaurant from './assets/04_640x426_3.jpg';
-import firstAid from './assets/05_640x426_4.jpg';
+import './assets/arrow.svg';
+import './assets/02_640x426_1.jpg';
+import './assets/03_640x426_2.jpg';
+import './assets/04_640x426_3.jpg';
+import './assets/05_640x426_4.jpg';
 
 var $ = require('jquery');
 var jQueryBridget = require('jquery-bridget');
@@ -327,3 +328,21 @@ const generatePopup = targetMarker => {
             </section>
         </section>`)
     };
+
+//scrolling controls for tabs 
+const scrollTabs = (event) => {
+    const button = event.target.id;
+    const position = $('.tabs-cont').scrollLeft();
+    console.log('pos', position)
+    if (button === "tab-left") {
+        $(".tabs-cont").animate({
+            scrollLeft: position - 120
+        }, 800);
+    } else if (button === "tab-right") {
+        $(".tabs-cont").animate({
+            scrollLeft: position + 120
+        }, 800);
+    }
+}
+
+$('.tab-nav').on('click', scrollTabs);
