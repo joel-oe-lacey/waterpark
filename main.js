@@ -36,7 +36,8 @@ const mapid = L.map('map', {
     dragging: true,
     maxBounds: bounds,
     maxBoundsViscosity: 1.0,
-    attributionControl: false
+    attributionControl: false,
+    doubleClickZoom: false
 });
 
 //save the ratio of img dimensions/browser dimensions for point scaling 
@@ -288,52 +289,24 @@ import {
 
 const navToMarker = event => {
     const targetMarker = event.target.dataset.marker;
-    const popupContent = generatePopup(targetMarker);
-    const popup = L.popup().setContent(popupContent);
-    markers[targetMarker].bindPopup(popup, {
-        autoPan: false
-    }).openPopup('')
+    markers[targetMarker].openPopup()
 
     //need to set scroll to top
 }
 
 $('.marker-nav').on('click', navToMarker);
 
-//open marker, create popup. 
-//need title, need image, type
-//pass object through as datapoint 
-//store everything in an imported object stored under a key of markerID 
-//then target that here
-//if certain properties are empty don't display on popup
-
-const generatePopup = targetMarker => {
-    const attr = attractionsByMarker[targetMarker];
-    const {
-            attrType,
-            name,
-            photoLink,
-            videoLink,
-            img,
-    } = attr;
-
-    return (`
-        <section class="popup ${attrType}" >
-            <section class="popup-picture" >
-                <img src="${img.url}" alt="${img.alt}">
-            </section>
-            <h3 class="popup-title">${name}</h3>
-            <section class="popup-buttons">
-                <button class="tile-button" data-photo-link=${photoLink}>☆</button>
-                <button class="tile-button" data-video-link=${videoLink}>☆</button>
-            </section>
-        </section>`)
-    };
-
 //scrolling controls for tabs 
 const scrollTabs = (event) => {
+    //don't display if position 0, or max
+    const leftBound = 0;
+    const rightBound = $('.tabs-cont').width();
+    console.log('right', rightBound)
+
     const button = event.target.id;
     const position = $('.tabs-cont').scrollLeft();
-    console.log('pos', position)
+
+    //visibility instead of hidden 
     if (button === "tab-left") {
         $(".tabs-cont").animate({
             scrollLeft: position - 120
@@ -342,6 +315,27 @@ const scrollTabs = (event) => {
         $(".tabs-cont").animate({
             scrollLeft: position + 120
         }, 800);
+    }
+
+    setTabBtnVisibility(rightBound)
+}
+
+const setTabBtnVisibility = (width) => {
+    const position = $('.tabs-cont').scrollLeft();
+    console.log('pos', position)
+
+    if (position === 0) {
+        $(`#tab-left`).css({
+            'display': `none`,
+        })
+    } else if (position === width) {
+        $(`#tab-right`).css({
+            'display': `none`,
+        })
+    } else {
+        $(`.tab-nav`).css({
+            'display': `inherit`,
+        })
     }
 }
 
