@@ -20,11 +20,12 @@ var fancybox = require('@fancyapps/fancybox');
 
 //if width under certain size, set a fixed height and width 
 // what if someone rescales?  
-const width = $(window).width();
-const height = $(window).height();
+let width = $(window).width();
+let height = $(window).height();
 
-// console.log('w', width)
-// console.log('h', height)
+width = width >= 1200 ? width : 1200;
+height = height > 600 ? height : 600;
+// under 1200 width set fixed width 
 
 const bounds = L.latLngBounds([0, 0], [height, width]);
 //is center making a difference compared to set bounds?
@@ -322,7 +323,9 @@ import {
 const navToMarker = event => {
     const targetMarker = event.target.dataset.marker;
     markers[targetMarker].openPopup()
-
+    $('html, body').animate({
+        scrollTop: $("#map").offset().top
+    }, 2000);
     //need to set scroll to top
 }
 
