@@ -17,6 +17,8 @@ import {
 } from 'leaflet';
 window.jQuery = $;
 var fancybox = require('@fancyapps/fancybox');
+const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.css');
+
 
 //if width under certain size, set a fixed height and width 
 // what if someone rescales?  
@@ -398,3 +400,4 @@ $('.tab-nav').on('click', scrollTabs);
 $('.leaflet-overlay-pane').css({
     "height":`${height}`
 })
+
