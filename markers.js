@@ -19,8 +19,10 @@ import $ from 'jquery';
 const latLngCalc = (lat, lng) => {
     // markers are offset by the page height, so that is normalized below 
     // lat long coords of 0, 0 are 0, pageHeight on container, so this currently accounts for that in coords. 
-    const height = $(window).height();
-    const width = $(window).width();
+    let height = $(window).height();
+    let width = $(window).width();
+    width = width >= 1200 ? width : 1200;
+    height = height > 600 ? height : 600;
 
     return L.latLng(((lat * height) + height), (lng * width))
 }
