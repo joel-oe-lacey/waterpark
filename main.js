@@ -22,8 +22,14 @@ var fancybox = require('@fancyapps/fancybox');
 //these should be based on browser
 //then you'll need to scale your point placement accordingly, relative to image size 
 //all points should be placed in relative size also? 
+
+//if width under certain size, set a fixed height and width 
+// what if someone rescales?  
 const width = $(window).width();
 const height = $(window).height();
+
+// console.log('w', width)
+// console.log('h', height)
 
 const bounds = L.latLngBounds([0, 0], [height, width]);
 //is center making a difference compared to set bounds?
@@ -46,20 +52,20 @@ const mapid = L.map('map', {
 const widthRatio = 1920 / width;
 const heightRatio = 1080 / height;
 
+//zindex set for firefox container variation 
 L.imageOverlay(mapImage, bounds, {
-    interactive: true
+    interactive: true,
+    zIndex: -1000
 }).addTo(mapid);
 
 function onMapClick(e) {
-    var mapWidth = mapid._container.offsetWidth;
-    var mapHeight = mapid._container.offsetHeight;
-    console.log('w', e.containerPoint.x * width / mapWidth);
-    console.log('h', e.containerPoint.y * height / mapHeight);
-    console.log(e.latlng);
-    console.log(e);
+    //to calculate location lat, lng
+    const lat = e.latlng.lat;
+    const lng = e.latlng.lng;
+    console.log('normalizedCoords', `(${lat/height}, ${lng/width})`);
 }
 
-// mapid.on('click', onMapClick);
+mapid.on('click', onMapClick);
 
 //panes
 mapid.createPane('toddlers')
@@ -147,15 +153,15 @@ const markers = { pirateShip,
     mainAid
 };
 
-const toddlers = L.layerGroup([pirateShip, toddlerSlide, toddlerBowl])
-const everyone = L.layerGroup([lazyRiver, circus, pirateLagoon, smallLagoon, wavepool, beach, flatSlide, windSlide, funnelShute, spiralShute, clamshell, funWall]);
-const family = L.layerGroup([lazyRiverSlide, cresentSlide])
-const extreme = L.layerGroup([loopSlide, curvySlide, speedSlide, bigSlide, carouselSlide])
-const wc = L.layerGroup([nwRestroom, pirateRestroom, beachRestroom, centralRestroom, mainSWRestroom, mainSERestroom])
-const lockers = L.layerGroup([NWLockers, SELockers])
-const food = L.layerGroup([centralFood, beachFood, mainFood])
-const parking = L.layerGroup([mainParking])
-const firstaid = L.layerGroup([mainAid])
+const toddlers = L.featureGroup([pirateShip, toddlerSlide, toddlerBowl])
+const everyone = L.featureGroup([lazyRiver, circus, pirateLagoon, smallLagoon, wavepool, beach, flatSlide, windSlide, funnelShute, spiralShute, clamshell, funWall]);
+const family = L.featureGroup([lazyRiverSlide, cresentSlide])
+const extreme = L.featureGroup([loopSlide, curvySlide, speedSlide, bigSlide, carouselSlide])
+const wc = L.featureGroup([nwRestroom, pirateRestroom, beachRestroom, centralRestroom, mainSWRestroom, mainSERestroom])
+const lockers = L.featureGroup([NWLockers, SELockers]).bringToFront()
+const food = L.featureGroup([centralFood, beachFood, mainFood])
+const parking = L.featureGroup([mainParking])
+const firstaid = L.featureGroup([mainAid])
 
 // Add markers to their respective panes 
 toddlers.addTo(mapid);
@@ -176,8 +182,8 @@ const $grid = $('.tiles').isotope({
 });
 
 
-const selectedTabs = {};
 //would use Set but not supported by IE  
+const selectedTabs = {};
 
 //color map obj
 //assign via jquery
@@ -207,6 +213,7 @@ const desatColorMap = {
 }
 
 const selectTab = selection => {
+    //On first click unselect all buttons and markers
     if (!Object.keys(selectedTabs).length) {
         Object.keys(desatColorMap).forEach(tab => {
             $(`#${tab}`).css({
@@ -218,6 +225,8 @@ const selectTab = selection => {
         })
         $(`.tab`).addClass('recessed');
     } 
+
+    //on initial and subsequent clicks unselect and reselect buttons and markers
     if (!selectedTabs[selection]) {
         selectedTabs[selection] = selection;
         $(`#${selection}`).css({
@@ -241,6 +250,8 @@ const selectTab = selection => {
     }
 }
 
+//create isotope filter based on classname selector
+//https://isotope.metafizzy.co/filtering.html
 const generateFilter = () => {
     return Object.keys(selectedTabs).reduce((filterString, selection) => {
         if (!filterString) {
@@ -262,8 +273,9 @@ const filterMap = e => {
             filter
         });
     } else {
+        //change this case to something less redundant? 
         $grid.isotope({
-            filter: '*'
+            filter: 'none'
         });
     }
 }
@@ -317,7 +329,7 @@ const scrollTabs = (event) => {
         }, 800);
     }
 
-    setTabBtnVisibility(rightBound)
+    setTimeout(setTabBtnVisibility(rightBound), 1000)
 }
 
 const setTabBtnVisibility = (width) => {
@@ -340,3 +352,8 @@ const setTabBtnVisibility = (width) => {
 }
 
 $('.tab-nav').on('click', scrollTabs);
+
+//overrides random height offset added by leaflet
+$('.leaflet-overlay-pane').css({
+    "height":`${height}`
+})
