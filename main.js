@@ -271,6 +271,14 @@ const selectTab = selection => {
     }
 }
 
+const navToTiles = () => {
+    $('html, body').animate({
+        scrollTop: $(".tiles-container").offset().top
+    }, 800);
+}
+
+$('.tile-hop').on('click', navToTiles)
+
 //create isotope filter based on classname selector
 //https://isotope.metafizzy.co/filtering.html
 const generateFilter = () => {
@@ -313,8 +321,18 @@ $('[data-fancybox="images"]').fancybox({
     ],
     thumbs: {
         autoStart: true
-    }
+    },
+    // parentEl: '.tiles'
 });
+
+//Try launching fancybox in JS  
+// $('.tile-button').on('click', () => {
+//     $.fancybox.open({
+//         src: './assets/03_640x426_2.jpg',
+//         type: 'images', 
+//     })
+// })
+
 
 import {
     attractionsByMarker
@@ -325,7 +343,7 @@ const navToMarker = event => {
     markers[targetMarker].openPopup()
     $('html, body').animate({
         scrollTop: $("#map").offset().top
-    }, 2000);
+    }, 800);
     //need to set scroll to top
 }
 
