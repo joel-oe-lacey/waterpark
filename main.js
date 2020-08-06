@@ -17,11 +17,6 @@ import {
 } from 'leaflet';
 window.jQuery = $;
 var fancybox = require('@fancyapps/fancybox');
-// jQueryBridget('fancybox', Fancybox, $);
-
-//these should be based on browser
-//then you'll need to scale your point placement accordingly, relative to image size 
-//all points should be placed in relative size also? 
 
 //if width under certain size, set a fixed height and width 
 // what if someone rescales?  
@@ -62,7 +57,8 @@ function onMapClick(e) {
     //to calculate location lat, lng
     const lat = e.latlng.lat;
     const lng = e.latlng.lng;
-    console.log('normalizedCoords', `(${lat/height}, ${lng/width})`);
+    console.log('mainLatlng', e.latlng)
+    console.log('normalizedCoords', `${lat/height}, ${lng/width}`);
 }
 
 mapid.on('click', onMapClick);
@@ -113,7 +109,8 @@ import {
     beachFood,
     mainFood,
     mainParking,
-    mainAid
+    mainAid,
+    testMarker
 } from './markers.js'
 
 const markers = { pirateShip,
@@ -153,26 +150,48 @@ const markers = { pirateShip,
     mainAid
 };
 
-const toddlers = L.featureGroup([pirateShip, toddlerSlide, toddlerBowl])
-const everyone = L.featureGroup([lazyRiver, circus, pirateLagoon, smallLagoon, wavepool, beach, flatSlide, windSlide, funnelShute, spiralShute, clamshell, funWall]);
-const family = L.featureGroup([lazyRiverSlide, cresentSlide])
-const extreme = L.featureGroup([loopSlide, curvySlide, speedSlide, bigSlide, carouselSlide])
-const wc = L.featureGroup([nwRestroom, pirateRestroom, beachRestroom, centralRestroom, mainSWRestroom, mainSERestroom])
-const lockers = L.featureGroup([NWLockers, SELockers]).bringToFront()
-const food = L.featureGroup([centralFood, beachFood, mainFood])
-const parking = L.featureGroup([mainParking])
-const firstaid = L.featureGroup([mainAid])
+const markerGroup = L.layerGroup([pirateShip,
+    toddlerSlide,
+    toddlerBowl,
+    lazyRiver,
+    circus,
+    pirateLagoon,
+    smallLagoon,
+    wavepool,
+    beach,
+    flatSlide,
+    windSlide,
+    funnelShute,
+    spiralShute,
+    clamshell,
+    funWall,
+    lazyRiverSlide,
+    cresentSlide,
+    loopSlide,
+    curvySlide,
+    speedSlide,
+    bigSlide,
+    carouselSlide,
+    nwRestroom,
+    pirateRestroom,
+    beachRestroom,
+    centralRestroom,
+    mainSWRestroom,
+    mainSERestroom,
+    NWLockers,
+    SELockers,
+    centralFood,
+    beachFood,
+    mainFood,
+    mainParking,
+    mainAid
+])
 
-// Add markers to their respective panes 
-toddlers.addTo(mapid);
-everyone.addTo(mapid);
-family.addTo(mapid);
-extreme.addTo(mapid);
-wc.addTo(mapid);
-lockers.addTo(mapid);
-food.addTo(mapid);
-parking.addTo(mapid);
-firstaid.addTo(mapid);
+markerGroup
+.eachLayer(function (layer) {
+    layer.setZIndexOffset(800);
+})
+.addTo(mapid);
 
 //isotope animations
 const $grid = $('.tiles').isotope({
@@ -227,6 +246,7 @@ const selectTab = selection => {
     } 
 
     //on initial and subsequent clicks unselect and reselect buttons and markers
+    //using display: none for the pane over removing the whole feature group is more performant
     if (!selectedTabs[selection]) {
         selectedTabs[selection] = selection;
         $(`#${selection}`).css({

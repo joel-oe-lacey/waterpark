@@ -124,7 +124,6 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -186,7 +185,7 @@ body {
     height: 25px;
     width: 25px;
     position: absolute;
-    z-index: 99999;
+    // z-index: 1000;
     border-radius: 50%;
     background-color: white;
     display: flex;
@@ -269,7 +268,7 @@ body {
     width: 100%;
     position: absolute;
     // background-color: red;
-    z-index: 9999;
+    z-index: 2000;
     bottom: 0;
     display: flex;
     flex-direction: row;
@@ -454,6 +453,9 @@ body {
     background-color: white;
     border-radius: 5px;
     border: 2px solid white;
+    z-index: 99999;
+    margin-top: -240px;
+    position: absolute;
 }
 
 .popup-picture {
@@ -490,6 +492,7 @@ body {
         background-color: lightgrey;
         border: none;
         color: @titleColor;
+        font-size: .7rem;
     }
 
     button:first-child {
@@ -505,4 +508,19 @@ body {
 //add resets 
 .leaflet-pane {
     height: 0px;
+}
+
+.leaflet-popup {
+    z-index: 1000;
+}
+
+.leaflet-marker-icon {
+    //icons need to be absolutely position to avoid them shifting each other in their layergroup 
+    //need to file a leaflet issue for this 
+    position: absolute;
+
+    //set marker anchor values
+    //icon images should be refined to take out right border
+    margin-left: -22px;
+    margin-top: -45px;
 }
