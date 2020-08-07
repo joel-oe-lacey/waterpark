@@ -1,4 +1,4 @@
-import './styles.less';
+import './styles-prefixed.less';
 import mapImage from './assets/01_1920x1080_Map.jpg';
 
 import './assets/arrow.svg';
@@ -25,12 +25,11 @@ const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.css');
 let width = $(window).width();
 let height = $(window).height();
 
+// under 1200 width set fixed width 
 width = width >= 1200 ? width : 1200;
 height = height > 600 ? height : 600;
-// under 1200 width set fixed width 
 
 const bounds = L.latLngBounds([0, 0], [height, width]);
-//is center making a difference compared to set bounds?
 const mapid = L.map('map', {
     crs: L.CRS.Simple,
     center: bounds.getCenter(),
@@ -44,27 +43,11 @@ const mapid = L.map('map', {
     doubleClickZoom: false
 });
 
-//save the ratio of img dimensions/browser dimensions for point scaling 
-//read more here: https://leafletjs.com/examples/crs-simple/crs-simple.html 
-//pixel vs map unit 
-const widthRatio = 1920 / width;
-const heightRatio = 1080 / height;
-
-//zindex set for firefox container variation 
 L.imageOverlay(mapImage, bounds, {
     interactive: true,
     zIndex: -1000
 }).addTo(mapid);
 
-function onMapClick(e) {
-    //to calculate location lat, lng
-    const lat = e.latlng.lat;
-    const lng = e.latlng.lng;
-    console.log('mainLatlng', e.latlng)
-    console.log('normalizedCoords', `${lat/height}, ${lng/width}`);
-}
-
-mapid.on('click', onMapClick);
 
 //panes
 mapid.createPane('toddlers')
@@ -203,13 +186,7 @@ const $grid = $('.tiles').isotope({
     layoutMode: 'fitRows'
 });
 
-
-//would use Set but not supported by IE  
 const selectedTabs = {};
-
-//color map obj
-//assign via jquery
-//assign class to recess button 
 const colorMap = {
     toddlers: 'hsl(277, 56%, 66%)',
     everyone: 'hsl(237, 54%, 64%)',
@@ -221,7 +198,6 @@ const colorMap = {
     parking: 'hsl(14, 78%, 58%)',
     firstaid: 'hsl(356, 66%, 56%)',
 }
-
 const desatColorMap = {
     toddlers: 'hsl(277, 0%, 66%)',
     everyone: 'hsl(237, 0%, 64%)',
@@ -304,7 +280,6 @@ const filterMap = e => {
             filter
         });
     } else {
-        //change this case to something less redundant? 
         $grid.isotope({
             filter: 'none'
         });
@@ -323,22 +298,18 @@ $('[data-fancybox="images"]').fancybox({
     ],
     thumbs: {
         autoStart: true
-    },
-    // parentEl: '.tiles'
+    }
 });
 
-//Try launching fancybox in JS  
-// $('.tile-button').on('click', () => {
-//     $.fancybox.open({
-//         src: './assets/03_640x426_2.jpg',
-//         type: 'images', 
-//     })
-// })
-
-
-import {
-    attractionsByMarker
-} from './attractions'
+$('[data-fancybox]').fancybox({
+    youtube: {
+        controls: 0,
+        showinfo: 0
+    },
+    vimeo: {
+        color: 'f00'
+    }
+});
 
 const navToMarker = event => {
     const targetMarker = event.target.dataset.marker;
@@ -346,7 +317,6 @@ const navToMarker = event => {
     $('html, body').animate({
         scrollTop: $("#map").offset().top
     }, 800);
-    //need to set scroll to top
 }
 
 $('.marker-nav').on('click', navToMarker);
@@ -396,8 +366,9 @@ const setTabBtnVisibility = (width) => {
 
 $('.tab-nav').on('click', scrollTabs);
 
-//overrides random height offset added by leaflet
+// overrides height offset added by leaflet
 $('.leaflet-overlay-pane').css({
     "height":`${height}`
 })
 
+import './store'

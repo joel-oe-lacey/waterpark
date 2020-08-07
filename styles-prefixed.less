@@ -1,16 +1,3 @@
-// Variables
-@toddlersColor: hsl(277, 56%, 66%);
-@everyoneColor: hsl(237, 54%, 64%);
-@familyColor: hsl(213, 67%, 57%);
-@extremeColor: hsl(174, 53%, 49%);
-@wcColor: hsl(69, 47%, 54%);
-@lockerColor: hsl(40, 90%, 61%);
-@foodColor: hsl(30, 90%, 61%);
-@parkingColor: hsl(14, 78%, 58%);
-@firstaidColor: hsl(356, 66%, 56%);
-@titleColor: hsl(216, 66%, 51%);
-
-// Reset
 a,
 abbr,
 acronym,
@@ -132,8 +119,8 @@ body {
     width: 100%;
     font-size: 3rem;
     font-weight: bold;
-    color: @titleColor;
-    letter-spacing: .4rem;
+    color: hsl(216, 66%, 51%);
+    letter-spacing: 0.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -162,12 +149,13 @@ body {
     height: 60%;
     width: 100%;
     border-bottom: 2px solid black;
+}
 
-    img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
+.tile-picture img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
 
 .tile-title {
@@ -185,7 +173,6 @@ body {
     height: 25px;
     width: 25px;
     position: absolute;
-    // z-index: 1000;
     border-radius: 50%;
     background-color: white;
     display: flex;
@@ -202,72 +189,104 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
-    button,
-    a {
-        margin: 1%;
-        height: 60%;
-        width: 15%;
-        background-color: transparent;
-        border: 1px solid lightgrey;
-        color: @titleColor;
-        text-decoration: none;
-    }
 }
 
-.tile-mixin(@color) {
-    .tile-picture {
-        border-bottom: 2px solid @color;
-    }
-
-    span,
-    .tile-title {
-        color: @color;
-    }
+.tile-buttons button,
+.tile-buttons a {
+    margin: 1%;
+    height: 60%;
+    width: 15%;
+    background-color: transparent;
+    border: 1px solid lightgrey;
+    color: hsl(216, 66%, 51%);
+    text-decoration: none;
 }
 
-.toddlers-tile {
-    .tile-mixin(@toddlersColor)
+.toddlers-tile .tile-picture {
+    border-bottom: 2px solid hsl(277, 56%, 66%);
 }
 
-.everyone-tile {
-    .tile-mixin(@everyoneColor)
+.toddlers-tile span,
+.toddlers-tile .tile-title {
+    color: hsl(277, 56%, 66%);
 }
 
-.family-tile {
-    .tile-mixin(@familyColor)
+.everyone-tile .tile-picture {
+    border-bottom: 2px solid hsl(237, 54%, 64%);
 }
 
-.extreme-tile {
-    .tile-mixin(@extremeColor)
+.everyone-tile span,
+.everyone-tile .tile-title {
+    color: hsl(237, 54%, 64%);
 }
 
-.wc-tile {
-    .tile-mixin(@wcColor)
+.family-tile .tile-picture {
+    border-bottom: 2px solid hsl(213, 67%, 57%);
 }
 
-.locker-tile {
-    .tile-mixin(@lockerColor)
+.family-tile span,
+.family-tile .tile-title {
+    color: hsl(213, 67%, 57%);
 }
 
-.food-tile {
-    .tile-mixin(@foodColor)
+.extreme-tile .tile-picture {
+    border-bottom: 2px solid hsl(174, 53%, 49%);
 }
 
-.parking-tile {
-    .tile-mixin(@parkingColor)
+.extreme-tile span,
+.extreme-tile .tile-title {
+    color: hsl(174, 53%, 49%);
 }
 
-.aid-tile {
-    .tile-mixin(@firstaidColor)
+.wc-tile .tile-picture {
+    border-bottom: 2px solid hsl(69, 47%, 54%);
 }
 
-// Tabs
+.wc-tile span,
+.wc-tile .tile-title {
+    color: hsl(69, 47%, 54%);
+}
+
+.locker-tile .tile-picture {
+    border-bottom: 2px solid hsl(40, 90%, 61%);
+}
+
+.locker-tile span,
+.locker-tile .tile-title {
+    color: hsl(40, 90%, 61%);
+}
+
+.food-tile .tile-picture {
+    border-bottom: 2px solid hsl(30, 90%, 61%);
+}
+
+.food-tile span,
+.food-tile .tile-title {
+    color: hsl(30, 90%, 61%);
+}
+
+.parking-tile .tile-picture {
+    border-bottom: 2px solid hsl(14, 78%, 58%);
+}
+
+.parking-tile span,
+.parking-tile .tile-title {
+    color: hsl(14, 78%, 58%);
+}
+
+.aid-tile .tile-picture {
+    border-bottom: 2px solid hsl(356, 66%, 56%);
+}
+
+.aid-tile span,
+.aid-tile .tile-title {
+    color: hsl(356, 66%, 56%);
+}
+
 .tabs {
     height: 18%;
     width: 100%;
     position: absolute;
-    // background-color: red;
     z-index: 2000;
     bottom: 0;
     display: flex;
@@ -278,59 +297,62 @@ body {
 .tabs-cont {
     height: 100%;
     width: 80%;
-    // background-color: blue;
     display: flex;
     flex-direction: row;
-    // justify-content: space-between;
+}
 
-    @media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
+    .tabs-cont {
         flex-wrap: nowrap;
         overflow-x: auto;
+        -ms-scroll-snap-type: x mandatory;
         scroll-snap-type: x mandatory;
     }
 }
 
 .tab {
     height: 100%;
-    //run a calc to get get a fixed pixel width based on browser size 
     width: 115px;
     display: flex;
     flex-direction: column;
     margin-right: 10px;
+}
 
-    @media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
+    .tab {
         width: 120px;
         flex: 0 0 auto;
         scroll-snap-align: start;
     }
+}
 
-    &:hover {
-        cursor: pointer;
-    }
+.tab:hover {
+    cursor: pointer;
+}
 
-    h1 {
-        height: 60%;
-        width: 100%;
-        font-size: 2rem;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.tab h1 {
+    height: 60%;
+    width: 100%;
+    font-size: 2rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    h3 {
-        height: 40%;
-        width: 100%;
-        font-size: .9rem;
-        font-weight: normal;
-        color: white;
-        text-align: center;
-    }
+.tab h3 {
+    height: 40%;
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: white;
+    text-align: center;
 }
 
 .tab-nav {
     display: none;
+    -o-object-fit: contain;
     object-fit: contain;
     height: 100%;
     width: 10%;
@@ -348,58 +370,60 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: .8rem;
+    font-size: 0.8rem;
 }
 
 #tab-left {
+    -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
 }
 
 #tab-right {
+    -webkit-transform: rotate(-90deg);
     transform: rotate(-90deg);
+}
 
-    @media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
+    #tab-right {
         display: initial;
     }
 }
 
 #toddlers {
-    background-color: @toddlersColor;
+    background-color: hsl(277, 56%, 66%);
 }
 
 #everyone {
-    background-color: @everyoneColor;
+    background-color: hsl(237, 54%, 64%);
 }
 
 #family {
-    background-color: @familyColor;
+    background-color: hsl(213, 67%, 57%);
 }
 
 #extreme {
-    background-color: @extremeColor;
+    background-color: hsl(174, 53%, 49%);
 }
 
 #wc {
-    background-color: @wcColor;
+    background-color: hsl(69, 47%, 54%);
 }
 
 #lockers {
-    background-color: @lockerColor;
+    background-color: hsl(40, 90%, 61%);
 }
 
 #food {
-    background-color: @foodColor;
+    background-color: hsl(30, 90%, 61%);
 }
 
 #parking {
-    background-color: @parkingColor;
+    background-color: hsl(14, 78%, 58%);
 }
 
 #firstaid {
-    background-color: @firstaidColor;
+    background-color: hsl(356, 66%, 56%);
 }
-
-
 
 .greyscale {
     filter: saturate(0%);
@@ -407,58 +431,48 @@ body {
     -moz-filter: grayscale(0%);
     -ms-filter: grayscale(0%);
     -o-filter: grayscale(0%);
-
-    // can do a greyscale animation 
-    // https: //stackoverflow.com/questions/16340159/greyscale-background-css-images
 }
 
-// breadcrumb comes in from elsewhere
-// add for local dev 
 .x-breadcrumb {
     max-width: 1400px;
     margin: 0 auto;
     padding: 20px 10px 15px;
-
-    ul > li {
-        float: left;
-        margin-right: 12px;
-        padding-right: 12px;
-        position: relative;
-    }
-
-    ul > li::before {
-        display: block;
-        position: absolute;
-        content: '/';
-        top: 50%;
-        right: 0;
-        font-size: 8px;
-        margin-top: -4px;
-    }
-
-    ul > li > a, span
-    {
-        float: left;
-        font-size: 10px;
-        font-weight: 700;
-        font-family: 'Open Sans',
-        sans-serif;
-        color: #949494;
-        line-height: 14px;
-        letter-spacing: .2em;
-        border-bottom: 1px solid transparent;
-    }
-
-    span:hover {
-        border-color: #949494;
-        -moz-transition: border-color .2s ease-in-out;
-        -webkit-transition: border-color .2s ease-in-out;
-        -o-transition: border-color .2s ease-in-out;
-        transition: border-color .2s ease-in-out;
-    }
 }
 
-//popup
+.x-breadcrumb ul>li {
+    float: left;
+    margin-right: 12px;
+    padding-right: 12px;
+    position: relative;
+}
+
+.x-breadcrumb ul>li::before {
+    display: block;
+    position: absolute;
+    content: '/';
+    top: 50%;
+    right: 0;
+    font-size: 8px;
+    margin-top: -4px;
+}
+
+.x-breadcrumb ul>li>a,
+.x-breadcrumb span {
+    float: left;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    color: #949494;
+    line-height: 14px;
+    letter-spacing: 0.2em;
+    border-bottom: 1px solid transparent;
+}
+
+.x-breadcrumb span:hover {
+    border-color: #949494;
+    transition: border-color 0.2s ease-in-out;
+}
+
 .popup {
     height: 220px;
     width: 220px;
@@ -467,7 +481,6 @@ body {
     background-color: white;
     border-radius: 5px;
     border: 2px solid white;
-    z-index: 99999;
     margin-top: -240px;
     position: absolute;
 }
@@ -475,18 +488,18 @@ body {
 .popup-picture {
     height: 65%;
     width: 100%;
+}
 
-    img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
+.popup-picture img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
 
 .popup-title {
     height: 20%;
     width: 100%;
-    // font-size: 1rem;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -499,27 +512,26 @@ body {
     width: 100%;
     display: flex;
     flex-direction: row;
+}
 
-    button {
-        height: 100%;
-        width: 50%;
-        background-color: lightgrey;
-        border: none;
-        color: @titleColor;
-        font-size: .7rem;
-    }
+.popup-buttons a {
+    height: 100%;
+    width: 50%;
+    background-color: lightgrey;
+    border: none;
+    color: hsl(216, 66%, 51%);
+    font-size: 0.7rem;
+    text-decoration: none;
+}
 
-    button:first-child {
-        border-right: 1px solid white;
-    }
+.popup-buttons a:first-child {
+    border-right: 1px solid white;
 }
 
 .recessed {
     margin-top: 5px;
-    // box-shadow: inset 3px 3px 15px 2px rgba(0, 0, 0, 0.3);
 }
 
-//add resets 
 .leaflet-pane {
     height: 0px;
 }
@@ -529,15 +541,7 @@ body {
 }
 
 .leaflet-marker-icon {
-    //icons need to be absolutely position to avoid them shifting each other in their layergroup 
-    //need to file a leaflet issue for this 
     position: absolute;
-
-    //set marker anchor values
-    //icon images should be refined to take out right border
     margin-left: -22px;
     margin-top: -45px;
 }
-
-
-//experimental popup style 
