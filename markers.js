@@ -18,7 +18,6 @@ import $ from 'jquery';
 
 const latLngCalc = (lat, lng) => {
     // markers are offset by the page height, so that is normalized below 
-    // lat long coords of 0, 0 are 0, pageHeight on container, so this currently accounts for that in coords. 
     let height = $(window).height();
     let width = $(window).width();
     width = width >= 1200 ? width : 1200;
@@ -38,6 +37,7 @@ const generatePopup = targetMarker => {
     } = attr;
 
     //styling can be altered by attrType if you want type specific popup design 
+    //add photos & videos to their respective objects under attractions to populate the fancybox links 
     const popupContent = (`
         <section class="popup ${attrType}" >
             <section class="popup-picture" >
@@ -45,8 +45,16 @@ const generatePopup = targetMarker => {
             </section>
             <h3 class="popup-title">${name}</h3>
             <section class="popup-buttons">
-                <button class="tile-button" data-photo-link=${photoLink}>☆ Photo Gallery</button>
-                <button class="tile-button" data-video-link=${videoLink}>☆ Video Gallery</button>
+                <a
+                    class="tile-buttons"
+                    href="${img.url}" data-fancybox="images"
+                    data-caption="${name}">☆ Photo Gallery
+                </a>
+                <a 
+                    class="tile-buttons" 
+                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    data-fancybox >☆ Video Gallery
+                </a>
             </section>
         </section>`)
 
