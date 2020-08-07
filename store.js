@@ -1,12 +1,23 @@
-const indexAttractions = () => {
-    return Object.keys(selectedAttractions).reduce((visibleAttractions, attrType) => {
-        visibleAttractions = [...visibleAttractions, ...selectedAttractions[attrType]]
-        return visibleAttractions;
-    }, [])
-}
+// For finding coordinates for placing map markers 
+// Reference doc on coordinate normalization 
+// function onMapClick(e) {
+//     const width = $(window).width();
+//     const height = $(window).height();
+//     //to calculate location lat, lng
+//     const lat = e.latlng.lat;
+//     const lng = e.latlng.lng;
+//     console.log('mainLatlng', e.latlng)
+//     console.log('normalizedCoords', `${lat/height}, ${lng/width}`);
+// }
 
+// mapid.on('click', onMapClick);
+import {
+    attractionsByMarker
+} from './attractions'
+
+//To generate HTML for static placement based on generated attractions lists 
 const generateTiles = attractions => {
-    return attractions.map(attr => {
+    return Object.keys(attractions).reduce((html, attr) => {
         const {
             attrType,
             name,
@@ -14,21 +25,34 @@ const generateTiles = attractions => {
             videoLink,
             img,
             markerName
-        } = attr;
-        const color = colorMap[attrType];
+        } = attractions[attr];
 
-        return (`
-        <section class="tile">
-            <section class="tile-picture" style="border-bottom: 2px solid ${color}">
-                <span class="tile-icon" role="img" aria-label="glyph" style="color:${color}">☆</span>
-                <img src='${img.url}' alt="${img.alt}">
-            </section>
-            <h3 class="tile-title" style="color:${color}">${name}</h3>
-            <section class="tile-buttons">
-                <button class="tile-button" data-marker=${markerName}>☆</button>
-                <button class="tile-button" data-photo-link=${photoLink}>☆</button>
-                <button class="tile-button" data-video-link=${videoLink}>☆</button>
-            </section>
-        </section>`)
-    })
+        //replace glyph with respective icon in a mapping table once available
+        html = html + `
+            <article class="tile ${attrType}-tile">
+                <section class="tile-picture">
+                    <span class="tile-icon" role="img" aria-label="glyph">☆</span>
+                    <img src="${img.url}" alt="${img.alt}">
+                </section>
+                <h3 class="tile-title">${name}</h3>
+                <section class="tile-buttons">
+                    <a class="tile-buttons marker-nav" data-marker="${markerName}">☆</a>
+                    <a
+                        class="tile-buttons"
+                        href="${photoLink}" 
+                        data-fancybox="images"
+                        data-caption="${name}">☆
+                    </a>
+                    <a 
+                        class="tile-buttons" 
+                        href="${videoLink}"
+                        data-fancybox >☆
+                    </a>
+                </section>
+            </article>`
+        
+        return html;
+    }, '')
 }
+
+// console.log(generateTiles(attractionsByMarker))

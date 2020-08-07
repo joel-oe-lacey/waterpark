@@ -5,11 +5,11 @@ export const attractionsByMarker = {
     pirateShip: {
             attrType: 'toddlers',
             name: 'Pirate Ship',
-            photoLink: '',
-            videoLink: '',
+            photoLink: './assets/03_640x426_2.jpg',
+            videoLink: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
             img: {
                 url: './assets/03_640x426_2.jpg',
-                alt: 'A waterslide with a yellow carousel pattern'
+                alt: 'A brightly colored childs jungle gym with water features'
             },
             markerName: 'pirateShip'
         }, 
@@ -20,7 +20,7 @@ export const attractionsByMarker = {
             videoLink: '',
             img: {
                 url: './assets/03_640x426_2.jpg',
-                alt: 'A waterslide with a yellow carousel pattern'
+                alt: 'A brightly colored childs jungle gym with water features'
             },
             markerName: 'toddlerSlide'
         }, 
@@ -31,7 +31,7 @@ export const attractionsByMarker = {
             videoLink: '',
             img: {
                 url: './assets/03_640x426_2.jpg',
-                alt: 'A waterslide with a yellow carousel pattern'
+                alt: 'A brightly colored childs jungle gym with water features'
             },
             markerName: 'toddlerBowl'
     },
@@ -349,8 +349,8 @@ export const attractionsByMarker = {
         photoLink: '',
         videoLink: '',
         img: {
-            url: './assets/02_640x426_1.jpg',
-            alt: 'A waterslide with a yellow carousel pattern'
+            url: './assets/04_640x426_3.jpg',
+            alt: 'A cabana style outdoor restaurant'
         },
         markerName: 'centralFood'
     },
@@ -360,8 +360,8 @@ export const attractionsByMarker = {
         photoLink: '',
         videoLink: '',
         img: {
-            url: './assets/02_640x426_1.jpg',
-            alt: 'A waterslide with a yellow carousel pattern'
+            url: './assets/04_640x426_3.jpg',
+            alt: 'A cabana style outdoor restaurant'
         },
         markerName: 'beachFood'
     },
@@ -371,8 +371,8 @@ export const attractionsByMarker = {
         photoLink: '',
         videoLink: '',
         img: {
-            url: './assets/02_640x426_1.jpg',
-            alt: 'A waterslide with a yellow carousel pattern'
+            url: './assets/04_640x426_3.jpg',
+            alt: 'A cabana style outdoor restaurant'
         },
         markerName: 'mainFood'
     },
