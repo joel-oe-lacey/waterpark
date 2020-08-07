@@ -12,7 +12,7 @@ module.exports = {
     // CSS and file (image) loaders
     module: {
         rules: [{
-                test: /\.less$/,
+                test: /\.(less|css)$/,
                 use: ['style-loader', 'css-loader', 'less-loader'],
             },
             {

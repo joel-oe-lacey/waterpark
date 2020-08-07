@@ -1,0 +1,547 @@
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+button,
+canvas,
+caption,
+center,
+cite,
+code,
+command,
+datalist,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+font,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+keygen,
+label,
+legend,
+li,
+meter,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+progress,
+q,
+s,
+samp,
+section,
+small,
+source,
+span,
+strike,
+strong,
+sub,
+sup,
+table,
+tbody,
+tdvideo,
+tfoot,
+th,
+thead,
+tr,
+tt,
+u,
+ul,
+var {
+    background: 0 0;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.tiles-container {
+    height: 250%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    height: 10%;
+    width: 100%;
+    font-size: 3rem;
+    font-weight: bold;
+    color: hsl(216, 66%, 51%);
+    letter-spacing: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tiles {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.tile {
+    height: 300px;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+}
+
+.tile-picture {
+    height: 60%;
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+
+.tile-picture img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.tile-title {
+    height: 20%;
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile-icon {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.tile-buttons {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile-buttons button,
+.tile-buttons a {
+    margin: 1%;
+    height: 60%;
+    width: 15%;
+    background-color: transparent;
+    border: 1px solid lightgrey;
+    color: hsl(216, 66%, 51%);
+    text-decoration: none;
+}
+
+.toddlers-tile .tile-picture {
+    border-bottom: 2px solid hsl(277, 56%, 66%);
+}
+
+.toddlers-tile span,
+.toddlers-tile .tile-title {
+    color: hsl(277, 56%, 66%);
+}
+
+.everyone-tile .tile-picture {
+    border-bottom: 2px solid hsl(237, 54%, 64%);
+}
+
+.everyone-tile span,
+.everyone-tile .tile-title {
+    color: hsl(237, 54%, 64%);
+}
+
+.family-tile .tile-picture {
+    border-bottom: 2px solid hsl(213, 67%, 57%);
+}
+
+.family-tile span,
+.family-tile .tile-title {
+    color: hsl(213, 67%, 57%);
+}
+
+.extreme-tile .tile-picture {
+    border-bottom: 2px solid hsl(174, 53%, 49%);
+}
+
+.extreme-tile span,
+.extreme-tile .tile-title {
+    color: hsl(174, 53%, 49%);
+}
+
+.wc-tile .tile-picture {
+    border-bottom: 2px solid hsl(69, 47%, 54%);
+}
+
+.wc-tile span,
+.wc-tile .tile-title {
+    color: hsl(69, 47%, 54%);
+}
+
+.locker-tile .tile-picture {
+    border-bottom: 2px solid hsl(40, 90%, 61%);
+}
+
+.locker-tile span,
+.locker-tile .tile-title {
+    color: hsl(40, 90%, 61%);
+}
+
+.food-tile .tile-picture {
+    border-bottom: 2px solid hsl(30, 90%, 61%);
+}
+
+.food-tile span,
+.food-tile .tile-title {
+    color: hsl(30, 90%, 61%);
+}
+
+.parking-tile .tile-picture {
+    border-bottom: 2px solid hsl(14, 78%, 58%);
+}
+
+.parking-tile span,
+.parking-tile .tile-title {
+    color: hsl(14, 78%, 58%);
+}
+
+.aid-tile .tile-picture {
+    border-bottom: 2px solid hsl(356, 66%, 56%);
+}
+
+.aid-tile span,
+.aid-tile .tile-title {
+    color: hsl(356, 66%, 56%);
+}
+
+.tabs {
+    height: 18%;
+    width: 100%;
+    position: absolute;
+    z-index: 2000;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tabs-cont {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 1200px) {
+    .tabs-cont {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -ms-scroll-snap-type: x mandatory;
+        scroll-snap-type: x mandatory;
+    }
+}
+
+.tab {
+    height: 100%;
+    width: 115px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+    .tab {
+        width: 120px;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+}
+
+.tab:hover {
+    cursor: pointer;
+}
+
+.tab h1 {
+    height: 60%;
+    width: 100%;
+    font-size: 2rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab h3 {
+    height: 40%;
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+}
+
+.tab-nav {
+    display: none;
+    -o-object-fit: contain;
+    object-fit: contain;
+    height: 100%;
+    width: 10%;
+}
+
+.tile-hop {
+    height: 100%;
+    width: 10%;
+    position: absolute;
+    z-index: 2000;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.8rem;
+}
+
+#tab-left {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+#tab-right {
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+@media screen and (max-width: 1200px) {
+    #tab-right {
+        display: initial;
+    }
+}
+
+#toddlers {
+    background-color: hsl(277, 56%, 66%);
+}
+
+#everyone {
+    background-color: hsl(237, 54%, 64%);
+}
+
+#family {
+    background-color: hsl(213, 67%, 57%);
+}
+
+#extreme {
+    background-color: hsl(174, 53%, 49%);
+}
+
+#wc {
+    background-color: hsl(69, 47%, 54%);
+}
+
+#lockers {
+    background-color: hsl(40, 90%, 61%);
+}
+
+#food {
+    background-color: hsl(30, 90%, 61%);
+}
+
+#parking {
+    background-color: hsl(14, 78%, 58%);
+}
+
+#firstaid {
+    background-color: hsl(356, 66%, 56%);
+}
+
+.greyscale {
+    filter: saturate(0%);
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    -ms-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+}
+
+.x-breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 10px 15px;
+}
+
+.x-breadcrumb ul>li {
+    float: left;
+    margin-right: 12px;
+    padding-right: 12px;
+    position: relative;
+}
+
+.x-breadcrumb ul>li::before {
+    display: block;
+    position: absolute;
+    content: '/';
+    top: 50%;
+    right: 0;
+    font-size: 8px;
+    margin-top: -4px;
+}
+
+.x-breadcrumb ul>li>a,
+.x-breadcrumb span {
+    float: left;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    color: #949494;
+    line-height: 14px;
+    letter-spacing: 0.2em;
+    border-bottom: 1px solid transparent;
+}
+
+.x-breadcrumb span:hover {
+    border-color: #949494;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.popup {
+    height: 220px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid white;
+    margin-top: -240px;
+    position: absolute;
+}
+
+.popup-picture {
+    height: 65%;
+    width: 100%;
+}
+
+.popup-picture img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.popup-title {
+    height: 20%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-buttons {
+    height: 15%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.popup-buttons a {
+    height: 100%;
+    width: 50%;
+    background-color: lightgrey;
+    border: none;
+    color: hsl(216, 66%, 51%);
+    font-size: 0.7rem;
+    text-decoration: none;
+}
+
+.popup-buttons a:first-child {
+    border-right: 1px solid white;
+}
+
+.recessed {
+    margin-top: 5px;
+}
+
+.leaflet-pane {
+    height: 0px;
+}
+
+.leaflet-popup {
+    z-index: 1000;
+}
+
+.leaflet-marker-icon {
+    position: absolute;
+    margin-left: -22px;
+    margin-top: -45px;
+}

@@ -10,46 +10,28 @@ import wcIconImg from './assets/wcIcon.png';
 
 export const aidIcon = L.icon({
     iconUrl: aidIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [60, 52],
 });
 export const extremeIcon = L.icon({
     iconUrl: extremeIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [60, 52],
 })
 export const familySlideIcon = L.icon({
     iconUrl: familySlideIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [60, 52],
 })
 export const forEveryoneIcon = L.icon({
     iconUrl: forEveryoneIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [60, 52],
 })
 export const foodIcon = L.icon({
     iconUrl: foodIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [60, 52],
 })
 export const lockersIcon = L.icon({
     iconUrl: lockersIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [60, 52],
 })
 export const parkingIcon = L.icon({
     iconUrl: parkingIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [60, 52],
 })
 export const toddlersIcon = L.icon({
     iconUrl: toddlersIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [60, 52],
 })
 export const wcIcon = L.icon({
     iconUrl: wcIconImg,
-    iconSize: [60, 52],
-    iconAnchor: [60, 52],
 })
