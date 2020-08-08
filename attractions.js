@@ -168,7 +168,7 @@ export const attractionsByMarker = {
         markerName: 'funWall'
     },
     lazyRiverSlide: {
-        attrType: 'everyone',
+        attrType: 'family',
         name: 'Lazy River Slide',
         photoLink: '',
         videoLink: '',
@@ -179,7 +179,7 @@ export const attractionsByMarker = {
         markerName: 'lazyRiverSlide'
     },
     cresentSlide: {
-        attrType: 'everyone',
+        attrType: 'family',
         name: 'Cresent Slide',
         photoLink: '',
         videoLink: '',
