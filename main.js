@@ -322,5 +322,3 @@ $('.marker-nav').on('click', navToMarker);
 $('.leaflet-overlay-pane').css({
     "height":`${height}`
 })
-
-import './store'

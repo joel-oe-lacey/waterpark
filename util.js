@@ -1,3 +1,5 @@
+// UTILITY FUNCTIONS
+
 // MARKER PLACEMENT
 // For finding coordinates for placing map markers 
 // Reference doc on coordinate normalization 
