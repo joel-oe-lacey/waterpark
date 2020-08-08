@@ -1,4 +1,4 @@
-import './styles-prefixed.less';
+import './styles-raw.less';
 import mapImage from './assets/01_1920x1080_Map.jpg';
 
 import './assets/arrow.svg';
@@ -230,7 +230,7 @@ const selectTab = selection => {
             'transition': 'background-color 500ms'
         })
         $(`.leaflet-${selection}-pane`).css({
-            'display': `initial`,
+            'display': `inline`,
         })
         $(`#${selection}`).removeClass('recessed');
     } else {

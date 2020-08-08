@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './main.js',
+    entry: ['core-js/stable', './main.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.bundle.js'
@@ -25,6 +25,16 @@ module.exports = {
                         publicPath: './assets/'
                     }
                 }]
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules)/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: ['@babel/preset-env']
+                  }
+                }
             }
         ],
     },

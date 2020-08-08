@@ -26,11 +26,17 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/runtime": "^7.6.3",
+    "babel-loader": "^8.0.6"
   },
   "dependencies": {
     "@fancyapps/fancybox": "^3.5.7",
     "isotope-layout": "^3.0.6",
-    "jquery-bridget": "^2.0.1"
+    "jquery-bridget": "^2.0.1",
+    "core-js": "^3.3.2"
   }
 }
