@@ -1,3 +1,4 @@
+// MARKER PLACEMENT
 // For finding coordinates for placing map markers 
 // Reference doc on coordinate normalization 
 // function onMapClick(e) {
@@ -15,6 +16,7 @@ import {
     attractionsByMarker
 } from './attractions'
 
+// HTML GENERATION
 //To generate HTML for static placement based on generated attractions lists 
 const generateTiles = attractions => {
     return Object.keys(attractions).reduce((html, attr) => {
@@ -56,3 +58,88 @@ const generateTiles = attractions => {
 }
 
 // console.log(generateTiles(attractionsByMarker))
+
+// SCROLLING CONTROL FOR TABS
+// const scrollTabs = (event) => {
+//     //don't display if position 0, or max
+//     const leftBound = 0;
+//     const rightBound = $('.tabs-cont').width();
+//     console.log('right', rightBound)
+
+//     const button = event.target.id;
+//     const position = $('.tabs-cont').scrollLeft();
+
+//     //visibility instead of hidden 
+//     if (button === "tab-left") {
+//         $(".tabs-cont").animate({
+//             scrollLeft: position - 120
+//         }, 800);
+//     } else if (button === "tab-right") {
+//         $(".tabs-cont").animate({
+//             scrollLeft: position + 120
+//         }, 800);
+//     }
+
+//     setTimeout(setTabBtnVisibility(rightBound), 1000)
+// }
+
+// const setTabBtnVisibility = (width) => {
+//     const position = $('.tabs-cont').scrollLeft();
+//     console.log('pos', position)
+
+//     if (position === 0) {
+//         $(`#tab-left`).css({
+//             'display': `none`,
+//         })
+//     } else if (position === width) {
+//         $(`#tab-right`).css({
+//             'display': `none`,
+//         })
+//     } else {
+//         $(`.tab-nav`).css({
+//             'display': `inherit`,
+//         })
+//     }
+// }
+// $('.tab-nav').on('click', scrollTabs);
+
+//Add this html either side of the tabs-container
+{/* <img id="tab-left" class="tab-nav" src="./assets/arrow.svg" alt="left directional arrow"/>
+<img id="tab-right" class="tab-nav" src="./assets/arrow.svg" alt="right directional arrow" /> */}
+
+//initial associated styles
+// .tab-nav {
+//     display: none;
+//     object-fit: contain;
+//     height: 100%;
+//     width: 10%;
+// }
+
+// #tab-left {
+//     transform: rotate(90deg);
+// }
+
+// #tab-right {
+//     transform: rotate(-90deg);
+
+//     @media screen and (max-width: 1200px) {
+//         display: initial;
+//     }
+// }
+
+// GRID TILE POSITIONING
+//To adjust tile grid positioning, set gutter gaps
+//add to html within "tiles"
+{/* <div class="gutter-sizer"></div> */}
+
+//add to isotope config
+    // fitRows: {
+    //     gutter: '.gutter-sizer'
+    // }
+
+// add relative styles
+// .gutter-sizer {
+//     @media (max-width:1400px) and (min-width:1200px) {
+//         width: 4%
+//     }
+// }
