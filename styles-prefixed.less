@@ -107,7 +107,6 @@ body {
 }
 
 .tiles-container {
-    height: 250%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -115,7 +114,6 @@ body {
 }
 
 .title {
-    height: 10%;
     width: 100%;
     font-size: 3rem;
     font-weight: bold;
@@ -125,6 +123,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
 }
 
 .tiles {
@@ -350,14 +351,6 @@ body {
     text-align: center;
 }
 
-.tab-nav {
-    display: none;
-    -o-object-fit: contain;
-    object-fit: contain;
-    height: 100%;
-    width: 10%;
-}
-
 .tile-hop {
     height: 100%;
     width: 10%;
@@ -371,22 +364,6 @@ body {
     align-items: center;
     color: white;
     font-size: 0.8rem;
-}
-
-#tab-left {
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
-#tab-right {
-    -webkit-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-}
-
-@media screen and (max-width: 1200px) {
-    #tab-right {
-        display: initial;
-    }
 }
 
 #toddlers {
@@ -423,14 +400,6 @@ body {
 
 #firstaid {
     background-color: hsl(356, 66%, 56%);
-}
-
-.greyscale {
-    filter: saturate(0%);
-    -webkit-filter: grayscale(0%);
-    -moz-filter: grayscale(0%);
-    -ms-filter: grayscale(0%);
-    -o-filter: grayscale(0%);
 }
 
 .x-breadcrumb {

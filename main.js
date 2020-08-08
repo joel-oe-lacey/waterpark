@@ -1,4 +1,4 @@
-import './styles-raw.less';
+import './styles-prefixed.less';
 import mapImage from './assets/01_1920x1080_Map.jpg';
 
 import './assets/arrow.svg';
