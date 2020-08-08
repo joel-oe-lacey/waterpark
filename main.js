@@ -1,4 +1,4 @@
-import './styles-prefixed.less';
+import './styles-raw.less';
 import mapImage from './assets/01_1920x1080_Map.jpg';
 
 import './assets/arrow.svg';
@@ -7,27 +7,24 @@ import './assets/03_640x426_2.jpg';
 import './assets/04_640x426_3.jpg';
 import './assets/05_640x426_4.jpg';
 
-var $ = require('jquery');
-var jQueryBridget = require('jquery-bridget');
-var Isotope = require('isotope-layout');
-// make Isotope a jQuery plugin
+const $ = require('jquery');
+const jQueryBridget = require('jquery-bridget');
+const Isotope = require('isotope-layout');
+// join Isotope a jQuery plugin
 jQueryBridget('isotope', Isotope, $);
-import {
-    map
-} from 'leaflet';
+import L from 'leaflet';
+// This selector allows fancybox loading 
 window.jQuery = $;
-var fancybox = require('@fancyapps/fancybox');
+const fancybox = require('@fancyapps/fancybox');
 const fancyboxCSS = require('@fancyapps/fancybox/dist/jquery.fancybox.css');
 
-
-//if width under certain size, set a fixed height and width 
-// what if someone rescales?  
 let width = $(window).width();
 let height = $(window).height();
 
-// under 1200 width set fixed width 
 width = width >= 1200 ? width : 1200;
-height = height > 600 ? height : 600;
+height = height >= 600 ? height : 600;
+
+//reset bounds a re-render on browser size change? 
 
 const bounds = L.latLngBounds([0, 0], [height, width]);
 const mapid = L.map('map', {
@@ -181,9 +178,9 @@ markerGroup
 
 //isotope animations
 const $grid = $('.tiles').isotope({
-    // options
     itemSelector: '.tile',
-    layoutMode: 'fitRows'
+    layoutMode: 'fitRows',
+    percentPosition: true
 });
 
 const selectedTabs = {};
@@ -320,51 +317,6 @@ const navToMarker = event => {
 }
 
 $('.marker-nav').on('click', navToMarker);
-
-//scrolling controls for tabs 
-const scrollTabs = (event) => {
-    //don't display if position 0, or max
-    const leftBound = 0;
-    const rightBound = $('.tabs-cont').width();
-    console.log('right', rightBound)
-
-    const button = event.target.id;
-    const position = $('.tabs-cont').scrollLeft();
-
-    //visibility instead of hidden 
-    if (button === "tab-left") {
-        $(".tabs-cont").animate({
-            scrollLeft: position - 120
-        }, 800);
-    } else if (button === "tab-right") {
-        $(".tabs-cont").animate({
-            scrollLeft: position + 120
-        }, 800);
-    }
-
-    setTimeout(setTabBtnVisibility(rightBound), 1000)
-}
-
-const setTabBtnVisibility = (width) => {
-    const position = $('.tabs-cont').scrollLeft();
-    console.log('pos', position)
-
-    if (position === 0) {
-        $(`#tab-left`).css({
-            'display': `none`,
-        })
-    } else if (position === width) {
-        $(`#tab-right`).css({
-            'display': `none`,
-        })
-    } else {
-        $(`.tab-nav`).css({
-            'display': `inherit`,
-        })
-    }
-}
-
-$('.tab-nav').on('click', scrollTabs);
 
 // overrides height offset added by leaflet
 $('.leaflet-overlay-pane').css({
