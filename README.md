@@ -50,6 +50,7 @@ Things which need fixing.
 3. Map scaling debate outlined above.
 4. Minor point, but current icon images for map markers taken from psd have a bit of right padding, that could be removed and the .leaflet-marker-icon padding-left adjusted accordingly if desired.
 5. What do you want to do when there’s no image or video? Like a WC. Currently if clicked the fancy box link just disappears as that's default functionality. I imagine this should be changed.
+6. I wasn't sure if/what testing environment you are using for this if there is one, so there aren't any unit tests, but I'd be happy to put some together if you pass along those details were that something you wanted. 
 
 ## To customize for deployment
 ### Adding Icons
