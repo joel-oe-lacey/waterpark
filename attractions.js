@@ -6,7 +6,7 @@ export const attractionsByMarker = {
             attrType: 'toddlers',
             name: 'Pirate Ship',
             photoLink: './assets/03_640x426_2.jpg',
-            videoLink: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            videoLink: 'https://www.youtube.com/watch?v=A05XO183NVs',
             img: {
                 url: './assets/03_640x426_2.jpg',
                 alt: 'A brightly colored childs jungle gym with water features'

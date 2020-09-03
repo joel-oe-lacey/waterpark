@@ -272,7 +272,7 @@ var attractionsByMarker = (_attractionsByMarker = {
     attrType: 'toddlers',
     name: 'Pirate Ship',
     photoLink: './assets/03_640x426_2.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    videoLink: 'https://www.youtube.com/watch?v=A05XO183NVs',
     img: {
       url: './assets/03_640x426_2.jpg',
       alt: 'A brightly colored childs jungle gym with water features'
@@ -1068,7 +1068,7 @@ var generatePopup = function generatePopup(targetMarker) {
       img = attr.img; //styling can be altered by attrType if you want type specific popup design 
   //add photos & videos to their respective objects under attractions to populate the fancybox links 
 
-  var popupContent = "\n        <section class=\"popup ".concat(attrType, "\" >\n            <section class=\"popup-picture\" >\n                <img src=\"").concat(img.url, "\" alt=\"").concat(img.alt, "\">\n            </section>\n            <h3 class=\"popup-title\">").concat(name, "</h3>\n            <section class=\"popup-buttons\">\n                <a\n                    class=\"tile-buttons\"\n                    href=\"").concat(img.url, "\" data-fancybox=\"images\"\n                    data-caption=\"").concat(name, "\">\u2606 Photo Gallery\n                </a>\n                <a \n                    class=\"tile-buttons\" \n                    href=\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\"\n                    data-fancybox >\u2606 Video Gallery\n                </a>\n            </section>\n        </section>");
+  var popupContent = "\n        <section class=\"popup ".concat(attrType, "\" >\n            <section class=\"popup-picture\" >\n                <img src=\"").concat(img.url, "\" alt=\"").concat(img.alt, "\">\n            </section>\n            <h3 class=\"popup-title\">").concat(name, "</h3>\n            <section class=\"popup-buttons\">\n                <a\n                    class=\"tile-buttons\"\n                    href=\"").concat(img.url, "\" data-fancybox=\"images\"\n                    data-caption=\"").concat(name, "\">\u2606 Photo Gallery\n                </a>\n                <a \n                    class=\"tile-buttons\" \n                    href=\"https://www.youtube.com/watch?v=A05XO183NVs\"\n                    data-fancybox >\u2606 Video Gallery\n                </a>\n            </section>\n        </section>");
   return L.popup({
     closeButton: false,
     autoPan: false
