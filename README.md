@@ -26,7 +26,7 @@ It seems that as the image overlay is handled by a transform, this creates a sta
 
 This is currently solved by absolutely positioning the markers, creating contexts for them, which allows them to utilize their z-index. This can be seen with a z-index tool such as [this](https://github.com/gwwar/z-context) which displays the z-index as calculated by the browser, and which demonstrates the z-index effectively being triggered once positioning is assigned.
 
-This all creates an issue for popups on chromium or webkit based browsers however who handle stacking contexts differently. 
+This all creates an issue for popups on chromium or webkit based browsers however who handle stacking contexts differently. To resolve this absolute positioning has to be set on the wrapping popup container to create it's own context and then inline left and bottom styling needs to be overwritten to align to the plotting coordinates.
 
 # Design Decisions
 ## Responsiveness
@@ -45,12 +45,11 @@ In terms of number of tiles displayed per view, I was unable to size them two ac
 
 # To Do 
 Things which need fixing.
-1. Stacking context bug for popups outlined above.
-2. Bounds limitation for popups to avoid clipping, perhaps via leaflet plugin. 
-3. Map scaling debate outlined above.
-4. Minor point, but current icon images for map markers taken from psd have a bit of right padding, that could be removed and the .leaflet-marker-icon padding-left adjusted accordingly if desired.
-5. What do you want to do when there’s no image or video? Like a WC. Currently if clicked the fancy box link just disappears as that's default functionality. I imagine this should be changed.
-6. I wasn't sure if/what testing environment you are using for this if there is one, so there aren't any unit tests, but I'd be happy to put some together if you pass along those details were that something you wanted. 
+1. Bounds limitation for popups to avoid clipping, perhaps via leaflet plugin. 
+2. Map scaling debate outlined above.
+3. Minor point, but current icon images for map markers taken from psd have a bit of right padding, that could be removed and the .leaflet-marker-icon padding-left adjusted accordingly if desired.
+4. What do we want to do when there’s no image or video? Like a WC. Currently if clicked the fancy box link just disappears as that's default functionality. I imagine this should be changed.
+5. I wasn't sure if/what testing environment is being used by the team, so there aren't any unit tests, but I'd be happy to put some together in keeping with existing suites. 
 
 ## To customize for deployment
 ### Adding Icons
