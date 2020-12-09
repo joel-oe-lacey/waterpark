@@ -1,10 +1,11 @@
 # Interactive Park Map 
-[Staging Display](https://joel-oe-lacey.github.io/waterpark/)
-
 ## Introduction
 This is an interactive map, utilizing a static image mapping overlay, created as part of a contract.
 
 It is designed for the consumer to modify in several places, touched upon in some documentation below. Placeholders are currently used for most visual elements: for map locations, images, ride types, and plotted points. A star glyph (☆) is currently present as a placeholder for user icons. 
+
+![landing](https://joel-oe-lacey-resources.s3.amazonaws.com/waterpark.png)
+### [Staging Display](https://joel-oe-lacey.github.io/waterpark/)
 
 ### Libraries Utilized
 - jQuery 
@@ -71,4 +72,4 @@ Markers, Icons and Popups and Map Layers all follow typical Leaflet structure fo
 Map improvements to be implimented.
 1. Bounds limitation for popups to avoid clipping, perhaps via leaflet plugin. 
 2. Map scaling debate outlined above.
-3. As I didn't hear back on what testing environment is being used by the team, if one is being used, there aren't any unit tests. This a point of attention that should be remedied. 
+3. As I didn't hear back on what testing environment is being used by the team, if one is being used, there aren't any unit tests. This a point of attention to be addressed before deployment. 
