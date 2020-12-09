@@ -1,8 +1,10 @@
 # Interactive Park Map 
-## Introduction
-This is a mapping overlay for an interactive maps set over static image, built as part of a contract.
+[Staging Display](https://joel-oe-lacey.github.io/waterpark/)
 
-It is designed for the consumer utilize with their own map, to plot points via documentation below. Images and icons are placeholders. Similarly, anywhere a star glyph (☆) is currently present is a placeholder for user icons. 
+## Introduction
+This is an interactive map, utilizing a static image mapping overlay, created as part of a contract.
+
+It is designed for the consumer to modify in several places, touched upon in some documentation below. Placeholders are currently used for most visual elements: for map locations, images, ride types, and plotted points. A star glyph (☆) is currently present as a placeholder for user icons. 
 
 ### Libraries Utilized
 - jQuery 
