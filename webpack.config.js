@@ -5,7 +5,7 @@ module.exports = {
     entry: ['core-js/stable', './main.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: "/waterpark/",
+        publicPath: "/Interactive-Park-Map/",
         filename: 'main.bundle.js'
     },
     devtool: 'inline-source-map',

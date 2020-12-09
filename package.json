@@ -1,7 +1,7 @@
 {
-  "name": "waterpark",
+  "name": "interactive-park-map",
   "version": "1.0.0",
-  "description": "A waterpark map interface",
+  "description": "An interactive park map, utilizing a static image mapping overlay.",
   "main": "main.js",
   "scripts": {
     "start": "webpack-dev-server",
